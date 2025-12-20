@@ -1,0 +1,182 @@
+# BridgeFunction_OnPacketRecv
+
+Chamado quando um pacote específico é recebido do servidor.
+
+## Assinatura
+
+```lua
+function BridgeFunction_OnPacketRecv(index, head, packet)
+    -- Processar pacote
+    return 0 -- ou 1 para consumir
+end
+```
+
+## Parâmetros
+
+- `index` (number): Índice do personagem relacionado
+- `head` (number): Cabeçalho do pacote (header/opcode)
+- `packet` (Packet): Objeto Packet com os dados
+
+## Retorno
+
+- `0`: Continua processamento normal do pacote
+- `1`: Consome o pacote (bloqueia processamento padrão)
+
+## Uso
+
+Ideal para:
+- Processar pacotes customizados do servidor
+- Interceptar e modificar pacotes existentes
+- Implementar funcionalidades client-side baseadas em pacotes
+
+## Exemplos
+
+### Exemplo Básico
+
+```lua
+-- Constante do header customizado
+local CUSTOM_HEADER = 0x1234
+
+function BridgeFunction_OnPacketRecv(index, head, packet)
+    -- Verificar se é nosso pacote customizado
+    if head == CUSTOM_HEADER then
+        -- Ler dados do pacote
+        local subCode = packet:ReadByte()
+        local message = packet:ReadString()
+        
+        -- Processar mensagem
+        if subCode == 0x01 then
+            -- Mostrar notificação
+            UIRenderText_RenderText(100, 100, message, 300, 20, 1)
+        end
+        
+        -- Consumir pacote (bloquear processamento padrão)
+        return 1
+    end
+    
+    -- Continuar processamento normal para outros pacotes
+    return 0
+end
+```
+
+### Sistema de Notificações
+
+```lua
+-- Headers customizados
+local NOTIFICATION_HEADER = 0x1234
+local NOTIFICATION_TYPE_INFO = 0x01
+local NOTIFICATION_TYPE_WARNING = 0x02
+local NOTIFICATION_TYPE_ERROR = 0x03
+
+function BridgeFunction_OnPacketRecv(index, head, packet)
+    if head == NOTIFICATION_HEADER then
+        local type = packet:ReadByte()
+        local title = packet:ReadString()
+        local message = packet:ReadString()
+        
+        -- Determinar cor baseado no tipo
+        local r, g, b = 255, 255, 255 -- Padrão branco
+        if type == NOTIFICATION_TYPE_INFO then
+            r, g, b = 100, 150, 255 -- Azul
+        elseif type == NOTIFICATION_TYPE_WARNING then
+            r, g, b = 255, 200, 0 -- Amarelo
+        elseif type == NOTIFICATION_TYPE_ERROR then
+            r, g, b = 255, 0, 0 -- Vermelho
+        end
+        
+        -- Mostrar notificação
+        UIRenderText_SetTextColor(r, g, b, 255)
+        UIRenderText_RenderText(100, 100, title, 400, 25, 10)
+        UIRenderText_SetTextColor(255, 255, 255, 255)
+        UIRenderText_RenderText(100, 130, message, 400, 20, 10)
+        
+        return 1
+    end
+    
+    return 0
+end
+```
+
+### Múltiplos Pacotes
+
+```lua
+-- Múltiplos headers
+local HEADER_CHAT = 0x1001
+local HEADER_ITEM = 0x1002
+local HEADER_SKILL = 0x1003
+
+function BridgeFunction_OnPacketRecv(index, head, packet)
+    if head == HEADER_CHAT then
+        local channel = packet:ReadByte()
+        local sender = packet:ReadString()
+        local message = packet:ReadString()
+        
+        -- Processar chat customizado
+        ProcessCustomChat(channel, sender, message)
+        return 1
+        
+    elseif head == HEADER_ITEM then
+        local itemId = packet:ReadWord()
+        local itemLevel = packet:ReadByte()
+        local itemOptions = packet:ReadDword()
+        
+        -- Processar item customizado
+        ProcessCustomItem(itemId, itemLevel, itemOptions)
+        return 1
+        
+    elseif head == HEADER_SKILL then
+        local skillId = packet:ReadWord()
+        local skillLevel = packet:ReadByte()
+        
+        -- Processar skill customizado
+        ProcessCustomSkill(skillId, skillLevel)
+        return 1
+    end
+    
+    return 0
+end
+```
+
+## Tratamento de Erros
+
+```lua
+function BridgeFunction_OnPacketRecv(index, head, packet)
+    if head == CUSTOM_HEADER then
+        local success, error = pcall(function()
+            -- Ler dados do pacote
+            local subCode = packet:ReadByte()
+            local message = packet:ReadString()
+            
+            -- Processar
+            ProcessMessage(subCode, message)
+        end)
+        
+        if not success then
+            -- Erro ao processar pacote
+            -- Log de erro (se disponível)
+            return 1 -- Consumir mesmo com erro
+        end
+        
+        return 1
+    end
+    
+    return 0
+end
+```
+
+## Notas Importantes
+
+1. **Consumo**: Retornar `1` bloqueia o processamento padrão do pacote
+2. **Leitura**: Leia os dados na ordem correta (como foram escritos no servidor)
+3. **Validação**: Sempre valide o tamanho dos dados antes de ler
+4. **Performance**: Processe pacotes rapidamente para não travar o cliente
+5. **Use constantes**: Defina constantes para headers de pacotes customizados
+
+## Funções Relacionadas
+
+- [Packet](../04-Objetos-Game.md#packet) - Documentação do objeto Packet
+- [BridgeFunction_OnInterfaceRender](BridgeFunction_OnInterfaceRender.md) - Loop de renderização
+- [BridgeFunction_OnLoadInterface](BridgeFunction_OnLoadInterface.md) - Inicialização
+- [Sistema de Pacotes](../09-Sistema-Pacotes.md) - Documentação completa do sistema de pacotes
+- [Bridge Functions](../05-Bridge-Functions.md) - Documentação completa dos hooks
+
