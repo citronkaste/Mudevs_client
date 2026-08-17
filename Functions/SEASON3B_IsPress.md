@@ -1,127 +1,119 @@
 # SEASON3B_IsPress
 
-Verifica se uma tecla foi pressionada no frame atual.
+Checks whether a key has been pressed in the current frame.
 
-## Assinatura
+## Signature
 
 ```lua
 SEASON3B_IsPress(key) -> bool
 ```
 
-## Parâmetros
+## Parameters
 
-- `key` (number): Código VK da tecla (ex: `0x4D` para M)
+- `key `(number): VK code of the key (ex:` 0x4D`for M)
 
-## Retorno
+## Return
 
-`bool` - `true` se a tecla foi pressionada no frame atual, `false` caso contrário.
+`bool ` - ` true `if the key was pressed in the current frame,` false`otherwise.
 
-## Características
+## Features
 
-- Retorna `true` apenas uma vez por pressionamento
-- Útil para toggles, atalhos, ações únicas
-- Deve ser chamado dentro de `BridgeFunction_OnInterfaceRender`
+- Return `true` just once per press
+- Useful for toggles, shortcuts, single actions
+- Must be called within `BridgeFunction_OnInterfaceRender`
 
-## Códigos VK Comuns
+## Common VK Codes
 
-| Código | Tecla |
+| Code | Key |
 | :----- | :---- |
-| `0x4D` | M |
-| `0x1B` | ESC |
-| `0x20` | Espaço |
-| `0x0D` | Enter |
-| `0x25` | Seta Esquerda |
-| `0x26` | Seta Cima |
-| `0x27` | Seta Direita |
-| `0x28` | Seta Baixo |
-| `0x70` | F1 |
-| `0x7B` | F12 |
+| `0x4D`| M |
+| `0x1B`| ESC |
+| `0x20`| Space |
+| `0x0D`| Enter |
+| `0x25`| Left Arrow |
+| `0x26`| Up Arrow |
+| `0x27`| Right Arrow |
+| `0x28`| Down Arrow |
+| `0x70`| F1 |
+| `0x7B`| F12 |
 
-Veja [02-Enumeracoes.md](../02-Enumeracoes.md) para lista completa.
+Look[02-Enumerations.md](../02-Enumerations.md)for complete list.
 
-## Exemplos
+## Examples
 
-### Toggle de UI
+### UI Toggle
 
 ```lua
 local uiVisible = false
 
 function BridgeFunction_OnInterfaceRender()
-    -- Toggle UI com tecla M
-    if SEASON3B_IsPress(0x4D) then -- VK_M
+    --Toggle UI with M key
+    if SEASON3B_IsPress(0x4D) then --VK_M
         uiVisible = not uiVisible
     end
     
     if uiVisible then
-        -- Renderizar UI
-        UIRenderText_RenderText(10, 10, "UI Ativa", 100, 20, 1)
+        --Render UI
+        UIRenderText_RenderText(10, 10, "Active UI", 100, 20, 1)
     end
 end
-```
-
-### Múltiplas Teclas
-
-```lua
+```### Multiple Keys```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Fechar com ESC
-    if SEASON3B_IsPress(0x1B) then -- VK_ESCAPE
-        -- Fechar menu, etc.
+    --Close with ESC
+    if SEASON3B_IsPress(0x1B) then --VK_ESCAPE
+        --Close menu, etc.
     end
     
-    -- Abrir com F1
-    if SEASON3B_IsPress(0x70) then -- VK_F1
-        -- Abrir menu de ajuda
+    --Open with F1
+    if SEASON3B_IsPress(0x70) then --VK_F1
+        --Open help menu
     end
 end
-```
-
-### Atalhos com Modificadores
-
-```lua
+```### Shortcuts with Modifiers```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Atalho Ctrl+S (conceitual, pode variar)
-    if SEASON3B_IsPress(0x11) and SEASON3B_IsPress(0x53) then -- Ctrl + S
-        -- Salvar algo
-        print("Salvando...")
+    --Shortcut Ctrl+S (conceptual, may vary)
+    if SEASON3B_IsPress(0x11) and SEASON3B_IsPress(0x53) then --Ctrl + S
+        --Save something
+        print("Saving...")
     end
 end
 ```
 
-## Diferença entre IsPress, IsRelease, IsRepeat e IsNone
+## Difference between IsPress, IsRelease, IsRepeat and IsNone
 
-- **IsPress**: Retorna `true` uma vez quando a tecla é pressionada
-- **IsRelease**: Retorna `true` uma vez quando a tecla é solta
-- **IsRepeat**: Retorna `true` continuamente enquanto a tecla está pressionada
-- **IsNone**: Retorna `true` quando a tecla não está pressionada
+- **IsPress**: Returns `true` once when the key is pressed
+- **IsRelease**: Returns `true` once when the key is released
+- **IsRepeat**: Returns `true` continuously while the key is pressed
+- **IsNone**: Returns `true` when the key is not pressed
 
-**Exemplo:**
+**Example:**
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if SEASON3B_IsPress(0x4D) then
-        -- Executa uma vez quando M é pressionado
-        print("M pressionado")
+        --Executes once when M is pressed
+        print("M pressed")
     end
     
     if SEASON3B_IsRepeat(0x4D) then
-        -- Executa continuamente enquanto M está pressionado
-        -- Útil para movimento contínuo
+        --Runs continuously while M is pressed
+        --Useful for continuous movement
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Chamada no OnInterfaceRender**: Esta função deve ser chamada dentro de `BridgeFunction_OnInterfaceRender`
-2. **Uma vez por frame**: Retorna `true` apenas uma vez por pressionamento
-3. **Use constantes**: Defina constantes para códigos VK comuns
-4. **Performance**: A função é muito rápida, pode ser chamada a cada frame
+1. **Call on OnInterfaceRender**: This function must be called within `BridgeFunction_OnInterfaceRender`
+2. **Once per frame**: Returns `true` just once per press
+3. **Use constants**: Define constants for common VK codes
+4. **Performance**: The function is very fast, it can be called every frame
 
-## Funções Relacionadas
+## Related Functions
 
-- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Verifica se tecla foi solta
-- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Verifica se tecla está sendo mantida
-- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Verifica se tecla não está pressionada
-- [SetBlockInput](SetBlockInput.md) - Bloqueia input do jogo
-- [Enumerações](../02-Enumeracoes.md) - Códigos VK completos
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Checks if the key has been released
+- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Checks if the key is being held
+- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Checks if the key is not pressed
+- [SetBlockInput](SetBlockInput.md) - Blocks game input
+- [Enumerations](../02-Enumerations.md) - Complete VK codes
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

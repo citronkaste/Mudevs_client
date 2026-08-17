@@ -1,34 +1,34 @@
 # BridgeFunction_OnLoadInterface
 
-Chamado quando a interface está sendo inicializada.
+Called when the interface is being initialized.
 
-## Assinatura
+## Signature
 
 ```lua
 function BridgeFunction_OnLoadInterface()
-    -- Sua lógica de inicialização aqui
+    --Your initialization logic here
 end
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Ideal para:
-- Carregar texturas e recursos
-- Inicializar variáveis globais
-- Configurar estados iniciais
-- Preparar dados para uso posterior
+Ideal for:
+- Load textures and resources
+- Initialize global variables
+- Configure initial states
+- Prepare data for later use
 
-## Exemplos
+## Examples
 
-### Carregar Texturas
+### Load Textures
 
 ```lua
 local buttonTextureId = 100
@@ -36,31 +36,27 @@ local backgroundTextureId = 101
 local iconTextureId = 102
 
 function BridgeFunction_OnLoadInterface()
-    -- Carregar texturas customizadas
+    --Load custom textures
     local status1 = LoadBitmap("Interface\\CustomUI\\button.bmp", buttonTextureId, 1, 0, 0, 1)
     local status2 = LoadBitmap("Interface\\CustomUI\\background.bmp", backgroundTextureId, 1, 0, 0, 1)
     local status3 = LoadBitmap("Interface\\CustomUI\\icon.bmp", iconTextureId, 1, 0, 0, 1)
     
     if status1 == 0 and status2 == 0 and status3 == 0 then
-        -- Texturas carregadas com sucesso
-        print("Recursos carregados com sucesso")
+        --Textures loaded successfully
+        print("Resources loaded successfully")
     else
-        -- Erro ao carregar
-        print("Erro ao carregar recursos")
+        --Error loading
+        print("Error loading resources")
     end
 end
-```
-
-### Inicializar Variáveis Globais
-
-```lua
--- Variáveis globais
+```### Initialize Global Variables```lua
+--Global variables
 local uiVisible = false
 local menuOpen = false
 local customData = {}
 
 function BridgeFunction_OnLoadInterface()
-    -- Inicializar variáveis
+    --Initialize variables
     uiVisible = true
     menuOpen = false
     customData = {
@@ -69,13 +65,9 @@ function BridgeFunction_OnLoadInterface()
         points = 0
     }
     
-    print("Sistema inicializado")
+    print("System initialized")
 end
-```
-
-### Configurar Estados Iniciais
-
-```lua
+```### Configure Initial States```lua
 local config = {
     showFPS = false,
     showHP = true,
@@ -84,65 +76,53 @@ local config = {
 }
 
 function BridgeFunction_OnLoadInterface()
-    -- Carregar configurações (exemplo)
-    -- config = LoadConfig() -- Se disponível
+    --Load settings (example)
+    --config = LoadConfig() -- If available
     
-    -- Configurar estados iniciais
-    print("Configurações carregadas")
+    --Configure initial states
+    print("Loaded Settings")
 end
-```
-
-### Preparar Dados
-
-```lua
+```### Prepare Data```lua
 local itemDatabase = {}
 
 function BridgeFunction_OnLoadInterface()
-    -- Preparar dados (exemplo)
+    --Prepare data (example)
     itemDatabase = {
         [1] = {name = "Espada", damage = 100},
-        [2] = {name = "Escudo", defense = 50},
+        [2] = {name = "shield", defense = 50},
         -- ...
     }
     
-    print("Banco de dados preparado")
+    print("Prepared database")
 end
 ```
 
-## Boas Práticas
+## Good Practices
 
-### 1. Carregar Recursos
+### 1. Load Resources
 
 ```lua
 function BridgeFunction_OnLoadInterface()
-    -- Carregar todos os recursos necessários
+    --Load all required resources
     LoadBitmap("path1", id1, 1, 0, 0, 1)
     LoadBitmap("path2", id2, 1, 0, 0, 1)
     -- ...
 end
-```
-
-### 2. Validação
-
-```lua
+```### 2. Validation```lua
 function BridgeFunction_OnLoadInterface()
     local success = true
     
-    -- Carregar recursos e verificar
+    --Upload resources and verify
     if LoadBitmap("path", id, 1, 0, 0, 1) ~= 0 then
         success = false
     end
     
     if not success then
-        print("Erro ao carregar recursos")
+        print("Error loading resources")
     end
 end
-```
-
-### 3. Organização
-
-```lua
--- Agrupar recursos relacionados
+```### 3. Organization```lua
+--Group related resources
 local uiTextures = {
     button = 100,
     background = 101,
@@ -150,23 +130,23 @@ local uiTextures = {
 }
 
 function BridgeFunction_OnLoadInterface()
-    -- Carregar grupo de recursos
+    --Load resource group
     LoadBitmap("UI\\button.bmp", uiTextures.button, 1, 0, 0, 1)
     LoadBitmap("UI\\background.bmp", uiTextures.background, 1, 0, 0, 1)
     LoadBitmap("UI\\icon.bmp", uiTextures.icon, 1, 0, 0, 1)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Chamado uma vez**: Esta função é chamada apenas uma vez durante a inicialização
-2. **Carregar recursos**: Use para carregar texturas, dados e recursos
-3. **Inicialização**: Ideal para configurar estados iniciais
-4. **Erros**: Trate erros ao carregar recursos
+1. **Called once**: This function is called only once during initialization
+2. **Load Resources**: Use to load textures, data and resources
+3. **Initialization**: Ideal for configuring initial states
+4. **Errors**: Handle errors when loading resources
 
-## Funções Relacionadas
+## Related Functions
 
-- [LoadBitmap](LoadBitmap.md) - Carrega textura
-- [BridgeFunction_OnInterfaceRender](BridgeFunction_OnInterfaceRender.md) - Loop de renderização
-- [Bridge Functions](../05-Bridge-Functions.md) - Documentação completa dos hooks
+- [LoadBitmap](LoadBitmap.md) - Load texture
+- [BridgeFunction_OnInterfaceRender](BridgeFunction_OnInterfaceRender.md) - Rendering loop
+- [Bridge Functions](../05-Bridge-Functions.md) - Complete documentation of hooks
 

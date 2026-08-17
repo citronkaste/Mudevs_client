@@ -1,120 +1,112 @@
 # SetBlockInput
 
-Bloqueia ou desbloqueia o input do jogo.
+Locks or unlocks the game input.
 
-## Assinatura
+## Signature
 
 ```lua
 SetBlockInput(block) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `block` (bool): `true` para bloquear input do jogo, `false` para desbloquear
+- `block `(bool):` true `to block game input,` false`to unlock
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Útil quando você tem uma UI modal que deve capturar todo o input, impedindo que o jogador interaja com o jogo enquanto a UI está aberta.
+Useful when you have a modal UI that must capture all input, preventing the player from interacting with the game while the UI is open.
 
-## Exemplos
+## Examples
 
-### Modal com Bloqueio de Input
+### Modal with Input Blocking
 
 ```lua
 local modalOpen = false
 
 function BridgeFunction_OnInterfaceRender()
     if modalOpen then
-        -- Bloquear input do jogo
+        --Block game input
         SetBlockInput(true)
         
-        -- Renderizar modal
+        --Render modal
         UIRenderText_SetBgColor(0, 0, 0, 200)
         UIRenderText_RenderText(100, 100, "", 400, 300, 10)
         
-        -- Título
+        --Title
         UIRenderText_SetTextColor(255, 255, 255, 255)
-        UIRenderText_RenderText(120, 120, "Modal Aberto", 360, 25, 11)
+        UIRenderText_RenderText(120, 120, "Open Modal", 360, 25, 11)
         
-        -- Fechar modal com ESC
-        if SEASON3B_IsPress(0x1B) then -- VK_ESCAPE
+        --Close modal with ESC
+        if SEASON3B_IsPress(0x1B) then --VK_ESCAPE
             modalOpen = false
             SetBlockInput(false)
         end
     end
 end
-```
-
-### Menu de Opções
-
-```lua
+```### Options Menu```lua
 local menuVisible = false
 
 function BridgeFunction_OnInterfaceRender()
-    -- Toggle menu com tecla M
-    if not menuVisible and SEASON3B_IsPress(0x4D) then -- VK_M
+    --Toggle menu with key M
+    if not menuVisible and SEASON3B_IsPress(0x4D) then --VK_M
         menuVisible = true
         SetBlockInput(true)
     end
     
     if menuVisible then
-        -- Renderizar menu
+        --Render menu
         -- ...
         
-        -- Fechar menu
-        if SEASON3B_IsPress(0x1B) then -- VK_ESCAPE
+        --Close menu
+        if SEASON3B_IsPress(0x1B) then --VK_ESCAPE
             menuVisible = false
             SetBlockInput(false)
         end
     end
 end
-```
-
-### Dialog Box
-
-```lua
+```### Dialog Box```lua
 local dialogOpen = false
 local dialogText = ""
 
 function BridgeFunction_OnInterfaceRender()
     if dialogOpen then
-        -- Bloquear input
+        --Block input
         SetBlockInput(true)
         
-        -- Renderizar dialog
+        --Render dialog
         UIRenderText_SetBgColor(50, 50, 50, 220)
         UIRenderText_RenderText(200, 200, "", 400, 200, 10)
         
-        -- Texto do dialog
+        --Dialog text
         UIRenderText_SetTextColor(255, 255, 255, 255)
         UIRenderText_RenderText(220, 220, dialogText, 360, 100, 11)
         
-        -- Botão OK
+        --OK button
         if IsMouseClicked() and CheckMouseIn(350, 350, 100, 30) then
             dialogOpen = false
             SetBlockInput(false)
         end
         
-        -- Renderizar botão OK
+        --Render OK button
         UIRenderText_RenderText(350, 350, "OK", 100, 30, 11)
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Sempre desbloqueie**: Sempre chame `SetBlockInput(false)` quando fechar a UI modal
-2. **Use com modais**: Ideal para menus, dialogs e UIs que devem capturar todo o input
-3. **Não bloqueie permanentemente**: Evite bloquear o input sem uma forma de desbloquear
-4. **Combine com ESC**: Use ESC como tecla padrão para fechar modais e desbloquear input
+1. **Always Unlock**: Always Call `SetBlockInput(false)` when to close the modal UI
+2. **Use with modals**: Ideal for menus, dialogs and UIs that must capture all input
+3. **Do not block permanently**: Avoid blocking input without a way to unlock it
+4. **Combine with ESC**: Use ESC as the default key to close modals and unlock input
 
-## Funções Relacionadas
+## Related Functions
 
-- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Verifica se tecla foi pressionada
-- [IsMouseClicked](IsMouseClicked.md) - Verifica se mouse foi clicado
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Checks if key was pressed
+- [IsMouseClicked](IsMouseClicked.md) - Checks if mouse was clicked
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

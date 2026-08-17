@@ -1,52 +1,48 @@
 # GetModel
 
-Obtém um objeto de modelo 3D.
+Gets a 3D model object.
 
-## Assinatura
+## Signature
 
 ```lua
 GetModel(index) -> GameBMD
 ```
 
-## Parâmetros
+## Parameters
 
-- `index` (number): Índice do modelo
+- `index`(number): Model index
 
-## Retorno
+## Return
 
-`GameBMD` ou `nil` - O objeto de modelo se existir, ou `nil` se o índice for inválido ou o modelo não existir.
+`GameBMD ` or`nil `- The model object if it exists, or` nil`if the index is invalid or the model does not exist.
 
-## Uso
+## Usage
 
-Obtém um objeto de modelo 3D que permite manipular propriedades visuais como visibilidade, transparência, escala, etc.
+Gets a 3D model object that allows you to manipulate visual properties such as visibility, transparency, scale, etc.
 
-## Exemplos
+## Examples
 
-### Manipular Propriedades do Modelo
+### Manipulate Model Properties
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    local model = GetModel(0) -- Exemplo de índice
+    local model = GetModel(0) --Index example
     if model then
-        -- Alterar propriedades do modelo
+        --Change model properties
         model.Visible = true
         model.Alpha = 0.8
         model.Scale = 1.5
         model.LightEnable = true
     end
 end
-```
-
-### Fade In/Out
-
-```lua
+```### Fade In/Out```lua
 local fadeAlpha = 0.0
 local fadingIn = true
 
 function BridgeFunction_OnInterfaceRender()
     local model = GetModel(modelIndex)
     if model then
-        -- Atualizar alpha
+        --Update alpha
         if fadingIn then
             fadeAlpha = fadeAlpha + 0.01
             if fadeAlpha >= 1.0 then
@@ -64,48 +60,44 @@ function BridgeFunction_OnInterfaceRender()
         model.Alpha = fadeAlpha
     end
 end
-```
-
-### Controlar Visibilidade
-
-```lua
+```### Control Visibility```lua
 function BridgeFunction_OnInterfaceRender()
     local model = GetModel(modelIndex)
     if model then
-        -- Toggle visibilidade com tecla
-        if SEASON3B_IsPress(0x56) then -- VK_V
+        --Toggle visibility with key
+        if SEASON3B_IsPress(0x56) then --VK_V
             model.Visible = not model.Visible
         end
     end
 end
 ```
 
-## Propriedades do Objeto Retornado
+## Returned Object Properties
 
-O objeto `GameBMD` possui as seguintes propriedades:
+The object `GameBMD` has the following properties:
 
-- `Visible` (bool): Flag de visibilidade
-- `Alpha` (float): Transparência Alpha (0.0 - 1.0)
-- `Scale` (float): Escala do modelo
-- `Position` (Vector3): Posição (x, y, z)
-- `Velocity` (float): Velocidade
-- `Gravity` (float): Gravidade
-- `AnimationFrame` (float): Frame atual da animação
-- `PlaySpeed` (float): Velocidade da animação
-- `LightEnable` (bool): Iluminação habilitada
-- `ContrastEnable` (bool): Contraste habilitado
+- `Visible`(bool): Visibility flag
+- `Alpha`(float): Alpha Transparency (0.0 - 1.0)
+- `Scale`(float): Model scale
+- `Position`(Vector3): Position (x, y, z)
+- `Velocity`(float): Speed
+- `Gravity`(float): Gravity
+- `AnimationFrame`(float): Current frame of the animation
+- `PlaySpeed`(float): Animation speed
+- `LightEnable`(bool): Lighting enabled
+- `ContrastEnable`(bool): Contrast enabled
 
-Veja [GameBMD](../04-Objetos-Game.md#gamebmd-model) para documentação completa.
+Look[GameBMD](../04-Game-Objects.md#gamebmd-model)for complete documentation.
 
-## Notas Importantes
+## Important Notes
 
-1. **Sempre valide o retorno**: `GetModel` pode retornar `nil` se o índice for inválido
-2. **Manipulação visual**: Permite manipular propriedades visuais do modelo
-3. **Performance**: Acessar propriedades é rápido, mas evite loops desnecessários
-4. **Índice**: O índice geralmente é obtido de outros sistemas do jogo
+1. **Always validate the return**:`GetModel ` can return`nil` if the index is invalid
+2. **Visual manipulation**: Allows you to manipulate visual properties of the model
+3. **Performance**: Accessing properties is fast, but avoid unnecessary loops
+4. **Index**: The index is usually obtained from other game systems
 
-## Funções Relacionadas
+## Related Functions
 
-- [GetCharacter](GetCharacter.md) - Obtém objeto de personagem
-- [Objetos do Jogo](../04-Objetos-Game.md) - Documentação completa dos objetos
+- [GetCharacter](GetCharacter.md) - Gets character object
+- [Game Objects](../04-Game-Objects.md) - Complete documentation of objects
 

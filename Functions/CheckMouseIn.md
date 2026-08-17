@@ -1,98 +1,90 @@
 # CheckMouseIn
 
-Verifica se o cursor do mouse está dentro de uma área retangular.
+Checks whether the mouse cursor is within a rectangular area.
 
-## Assinatura
+## Signature
 
 ```lua
 CheckMouseIn(x, y, w, h) -> bool
 ```
 
-## Parâmetros
+## Parameters
 
-- `x` (number): Coordenada X do canto superior esquerdo do retângulo
-- `y` (number): Coordenada Y do canto superior esquerdo do retângulo
-- `w` (number): Largura do retângulo
-- `h` (number): Altura do retângulo
+- `x`(number): X coordinate of the upper left corner of the rectangle
+- `y`(number): Y coordinate of the upper left corner of the rectangle
+- `w`(number): Width of the rectangle
+- `h`(number): Height of the rectangle
 
-## Retorno
+## Return
 
-`bool` - `true` se o mouse está dentro da área retangular, `false` caso contrário.
+`bool ` - ` true `if the mouse is within the rectangular area,` false`otherwise.
 
-## Exemplos
+## Examples
 
-### Verificação de Hover
+### Hover Check
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
     local buttonX, buttonY = 100, 100
     local buttonW, buttonH = 200, 50
     
-    -- Verificar se mouse está sobre o botão
+    --Check if the mouse is over the button
     if CheckMouseIn(buttonX, buttonY, buttonW, buttonH) then
-        -- Mouse está sobre o botão (hover)
-        -- Renderizar botão destacado
-        UIRenderText_SetTextColor(255, 255, 0, 255) -- Amarelo
+        --Mouse is over the button (hover)
+        --Render highlighted button
+        UIRenderText_SetTextColor(255, 255, 0, 255) --Yellow
     else
-        -- Mouse não está sobre o botão
-        UIRenderText_SetTextColor(255, 255, 255, 255) -- Branco
+        --Mouse is not over the button
+        UIRenderText_SetTextColor(255, 255, 255, 255) --Branco
     end
     
-    UIRenderText_RenderText(buttonX, buttonY, "Botão", buttonW, buttonH, 1)
+    UIRenderText_RenderText(buttonX, buttonY, "Button", buttonW, buttonH, 1)
 end
-```
-
-### Clique em Botão
-
-```lua
+```### Click Button```lua
 function BridgeFunction_OnInterfaceRender()
     local buttonX, buttonY = 100, 100
     local buttonW, buttonH = 200, 50
     
-    -- Verificar clique no botão
+    --Check button click
     if IsMouseClicked() and CheckMouseIn(buttonX, buttonY, buttonW, buttonH) then
-        -- Botão foi clicado
-        print("Botão clicado!")
+        --Button was clicked
+        print("Button clicked!")
     end
 end
-```
-
-### Sistema de Múltiplos Botões
-
-```lua
+```### Multiple Button System```lua
 local buttons = {
-    {x = 100, y = 100, w = 200, h = 50, text = "Botão 1"},
-    {x = 100, y = 160, w = 200, h = 50, text = "Botão 2"},
-    {x = 100, y = 220, w = 200, h = 50, text = "Botão 3"}
+    {x = 100, y = 100, w = 200, h = 50, text = "Button 1"},
+    {x = 100, y = 160, w = 200, h = 50, text = "Button 2"},
+    {x = 100, y = 220, w = 200, h = 50, text = "Button 3"}
 }
 
 function BridgeFunction_OnInterfaceRender()
     for i, button in ipairs(buttons) do
         local hovered = CheckMouseIn(button.x, button.y, button.w, button.h)
         
-        -- Renderizar botão com cor diferente se hover
+        --Render button with different color if hover
         local color = hovered and RGBA(100, 150, 255, 255) or RGBA(50, 100, 200, 255)
         
-        -- Verificar clique
+        --Check click
         if IsMouseClicked() and hovered then
-            print("Botão clicado: " .. button.text)
+            print("Button clicked:" .. button.text)
         end
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Coordenadas**: As coordenadas são em pixels da tela (0,0 = canto superior esquerdo)
-2. **Área inclusiva**: A verificação inclui as bordas do retângulo
-3. **Performance**: A função é muito rápida, pode ser chamada múltiplas vezes por frame
-4. **Combine com IsMouseClicked**: Use junto com `IsMouseClicked` para detectar cliques em áreas específicas
+1. **Coordinates**: Coordinates are in screen pixels (0,0 = top left corner)
+2. **Inclusive area**: The check includes the edges of the rectangle
+3. **Performance**: The function is very fast, can be called multiple times per frame
+4. **Combine with IsMouseClicked**: Use together with `IsMouseClicked` to detect clicks in specific areas
 
-## Funções Relacionadas
+## Related Functions
 
-- [IsMouseClicked](IsMouseClicked.md) - Verifica se botão foi clicado
-- [IsMouseHeld](IsMouseHeld.md) - Verifica se botão está pressionado
-- [MouseX](../10-Variaveis-Globais.md#mousex) - Posição X do mouse
-- [MouseY](../10-Variaveis-Globais.md#mousey) - Posição Y do mouse
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [IsMouseClicked](IsMouseClicked.md) - Checks if button was clicked
+- [IsMouseHeld](IsMouseHeld.md) - Checks if button is pressed
+- [MouseX](../10-Global-Variables.md#mousex) - X position of the mouse
+- [MouseY](../10-Global-Variables.md#mousey) - Y position of the mouse
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

@@ -1,76 +1,68 @@
 # RenderTipText
 
-Renderiza um texto estilo tooltip.
+Renders tooltip style text.
 
-## Assinatura
+## Signature
 
 ```lua
 RenderTipText(x, y, text) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `x`, `y` (number): Posição na tela (pixels)
-- `text` (string): Texto do tooltip
+- `x `, ` y`(number): Position on the screen (pixels)
+- `text`(string): Texto do tooltip
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Renderiza texto em formato de tooltip (geralmente com fundo e borda). Útil para informações contextuais que aparecem quando o mouse está sobre algo.
+Renders text in tooltip format (usually with background and border). Useful for contextual information that appears when the mouse is over something.
 
-## Exemplos
+## Examples
 
 ### Tooltip Básico
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar hover sobre item
+    --Check hover over item
     if CheckMouseIn(100, 100, 50, 50) then
-        -- Mostrar tooltip
-        RenderTipText(MouseX + 10, MouseY + 10, "Item: Espada +15")
+        --Show tooltip
+        RenderTipText(MouseX + 10, MouseY + 10, "Item: Sword +15")
     end
 end
-```
-
-### Tooltip com Informações
-
-```lua
+```### Tooltip with Information```lua
 function BridgeFunction_OnInterfaceRender()
     if CheckMouseIn(100, 100, 50, 50) then
-        -- Tooltip com múltiplas informações
-        RenderTipText(MouseX + 10, MouseY + 10, "Espada +15\nDano: 150-200\nDurabilidade: 200/200")
+        --Tooltip with multiple information
+        RenderTipText(MouseX + 10, MouseY + 10, "Sword +15\nDamage: 150-200\nDurability: 200/200")
     end
 end
-```
-
-### Tooltip Condicional
-
-```lua
+```### Conditional Tooltip```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar diferentes áreas
+    --Check different areas
     if CheckMouseIn(100, 100, 50, 50) then
-        RenderTipText(MouseX + 10, MouseY + 10, "Botão 1")
+        RenderTipText(MouseX + 10, MouseY + 10, "Button 1")
     elseif CheckMouseIn(160, 100, 50, 50) then
-        RenderTipText(MouseX + 10, MouseY + 10, "Botão 2")
+        RenderTipText(MouseX + 10, MouseY + 10, "Button 2")
     elseif CheckMouseIn(220, 100, 50, 50) then
-        RenderTipText(MouseX + 10, MouseY + 10, "Botão 3")
+        RenderTipText(MouseX + 10, MouseY + 10, "Button 3")
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Formato tooltip**: Renderiza em formato específico de tooltip (com fundo e borda)
-2. **Posição**: Geralmente posicionado próximo ao mouse
-3. **Informações contextuais**: Ideal para informações que aparecem ao passar o mouse
-4. **Simples**: Versão simplificada, use `UIRenderText_RenderText` para mais controle
+1. **Tooltip format**: Renders in specific tooltip format (with background and border)
+2. **Position**: Generally positioned close to the mouse
+3. **Contextual information**: Ideal for information that appears when hovering over the mouse
+4. **Simple**: Simplified version, use `UIRenderText_RenderText` for more control
 
-## Funções Relacionadas
+## Related Functions
 
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderiza texto com controle completo
-- [CheckMouseIn](CheckMouseIn.md) - Verifica se mouse está em área
-- [Sistema de UI](../08-Sistema-UI.md) - Documentação completa do sistema de UI
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renders text with complete control
+- [CheckMouseIn](CheckMouseIn.md) - Checks if mouse is in area
+- [UI System](../08-UI-System.md) - Complete UI System documentation
 

@@ -1,116 +1,108 @@
 # SEASON3B_IsRepeat
 
-Verifica se uma tecla está sendo mantida pressionada (repetição).
+Checks whether a key is being held down (repeat).
 
-## Assinatura
+## Signature
 
 ```lua
 SEASON3B_IsRepeat(key) -> bool
 ```
 
-## Parâmetros
+## Parameters
 
-- `key` (number): Código VK da tecla (ex: `0x4D` para M)
+- `key `(number): VK code of the key (ex:` 0x4D`for M)
 
-## Retorno
+## Return
 
-`bool` - `true` se a tecla está sendo mantida pressionada, `false` caso contrário.
+`bool ` - ` true `if the key is being held down,` false`otherwise.
 
-## Características
+## Features
 
-- Retorna `true` continuamente enquanto a tecla estiver pressionada
-- Útil para movimento contínuo, scroll, ações repetitivas
-- Deve ser chamado dentro de `BridgeFunction_OnInterfaceRender`
+- Return `true` continuously while the key is pressed
+- Useful for continuous movement, scrolling, repetitive actions
+- Must be called within `BridgeFunction_OnInterfaceRender`
 
-## Exemplos
+## Examples
 
-### Movimento Contínuo
+### Continuous Movement
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Movimento contínuo com setas
-    if SEASON3B_IsRepeat(0x25) then -- VK_LEFT
-        -- Mover para esquerda continuamente
-        print("Movendo para esquerda")
-    elseif SEASON3B_IsRepeat(0x27) then -- VK_RIGHT
-        -- Mover para direita continuamente
-        print("Movendo para direita")
+    --Continuous movement with arrows
+    if SEASON3B_IsRepeat(0x25) then --VK_LEFT
+        --Move left continuously
+        print("Moving left")
+    elseif SEASON3B_IsRepeat(0x27) then --VK_RIGHT
+        --Move right continuously
+        print("Moving right")
     end
     
-    if SEASON3B_IsRepeat(0x26) then -- VK_UP
-        -- Mover para cima continuamente
-        print("Movendo para cima")
-    elseif SEASON3B_IsRepeat(0x28) then -- VK_DOWN
-        -- Mover para baixo continuamente
-        print("Movendo para baixo")
+    if SEASON3B_IsRepeat(0x26) then --VK_UP
+        --Move up continuously
+        print("Moving up")
+    elseif SEASON3B_IsRepeat(0x28) then --VK_DOWN
+        --Move down continuously
+        print("Moving down")
     end
 end
-```
-
-### Scroll Contínuo
-
-```lua
+```### Continuous Scroll```lua
 local scrollPosition = 0
 
 function BridgeFunction_OnInterfaceRender()
-    -- Scroll com Page Up/Down
-    if SEASON3B_IsRepeat(0x21) then -- VK_PRIOR (Page Up)
+    --Scroll with Page Up/Down
+    if SEASON3B_IsRepeat(0x21) then --VK_PRIOR (Page Up)
         scrollPosition = scrollPosition - 1
-    elseif SEASON3B_IsRepeat(0x22) then -- VK_NEXT (Page Down)
+    elseif SEASON3B_IsRepeat(0x22) then --VK_NEXT (Page Down)
         scrollPosition = scrollPosition + 1
     end
     
-    -- Renderizar conteúdo com scroll
+    --Render content with scroll
     -- ...
 end
-```
-
-### Ação Repetitiva
-
-```lua
+```### Repetitive Action```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Ação que se repete enquanto tecla está pressionada
-    if SEASON3B_IsRepeat(0x20) then -- VK_SPACE
-        -- Executar ação continuamente
-        -- (ex: atirar, correr, etc.)
+    --Action that is repeated while the key is pressed
+    if SEASON3B_IsRepeat(0x20) then --VK_SPACE
+        --Execute action continuously
+        --(e.g. shooting, running, etc.)
     end
 end
 ```
 
-## Diferença entre IsPress, IsRelease, IsRepeat e IsNone
+## Difference between IsPress, IsRelease, IsRepeat and IsNone
 
-- **IsPress**: Retorna `true` uma vez quando a tecla é pressionada
-- **IsRelease**: Retorna `true` uma vez quando a tecla é solta
-- **IsRepeat**: Retorna `true` continuamente enquanto a tecla está pressionada
-- **IsNone**: Retorna `true` quando a tecla não está pressionada
+- **IsPress**: Returns `true` once when the key is pressed
+- **IsRelease**: Returns `true` once when the key is released
+- **IsRepeat**: Returns `true` continuously while the key is pressed
+- **IsNone**: Returns `true` when the key is not pressed
 
-**Exemplo:**
+**Example:**
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if SEASON3B_IsPress(0x4D) then
-        -- Executa uma vez quando M é pressionado
-        print("M pressionado")
+        --Executes once when M is pressed
+        print("M pressed")
     end
     
     if SEASON3B_IsRepeat(0x4D) then
-        -- Executa continuamente enquanto M está pressionado
-        print("M mantido pressionado")
+        --Runs continuously while M is pressed
+        print("M held pressed")
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Chamada no OnInterfaceRender**: Esta função deve ser chamada dentro de `BridgeFunction_OnInterfaceRender`
-2. **Contínuo**: Retorna `true` continuamente enquanto a tecla está pressionada
-3. **Use para movimento**: Ideal para movimento contínuo e ações repetitivas
-4. **Performance**: A função é muito rápida, mas evite lógica pesada dentro do loop
+1. **Call on OnInterfaceRender**: This function must be called within `BridgeFunction_OnInterfaceRender`
+2. **Continuous**: Returns `true` continuously while the key is pressed
+3. **Use for movement**: Ideal for continuous movement and repetitive actions
+4. **Performance**: The function is very fast, but avoid heavy logic inside the loop
 
-## Funções Relacionadas
+## Related Functions
 
-- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Verifica se tecla foi pressionada
-- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Verifica se tecla foi solta
-- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Verifica se tecla não está pressionada
-- [Enumerações](../02-Enumeracoes.md) - Códigos VK completos
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Checks if key was pressed
+- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Checks if the key has been released
+- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Checks if the key is not pressed
+- [Enumerations](../02-Enumerations.md) - Complete VK codes
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

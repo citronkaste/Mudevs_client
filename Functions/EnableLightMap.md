@@ -2,47 +2,47 @@
 
 Habilita lightmapping.
 
-## Assinatura
+## Signature
 
 ```lua
 EnableLightMap() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Habilita o lightmapping, permitindo que objetos sejam afetados por mapas de luz. Use para renderização com iluminação pré-calculada.
+Enables lightmapping, allowing objects to be affected by lightmaps. Use for rendering with pre-calculated lighting.
 
-## Exemplos
+## Examples
 
-### Renderização com Lightmap
+### Rendering with Lightmap
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Habilitar lightmapping
+    --Habilitar lightmapping
     EnableLightMap()
     
-    -- Renderizar objetos com lightmap
+    --Render objects with lightmap
     RenderBitmap(objectWithLightmap, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Lightmapping**: Sistema de iluminação pré-calculada
-2. **Performance**: Pode melhorar performance em alguns casos
-3. **Use com objetos 3D**: Ideal para objetos que usam lightmaps
-4. **Específico do motor**: Funcionalidade específica do motor de renderização
+1. **Lightmapping**: Pre-calculated lighting system
+2. **Performance**: May improve performance in some cases
+3. **Use with 3D objects**: Ideal for objects that use lightmaps
+4. **Engine Specific**: Functionality specific to the rendering engine
 
-## Funções Relacionadas
+## Related Functions
 
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [RenderBitmap](RenderBitmap.md) - Renders image
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

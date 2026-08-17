@@ -1,76 +1,72 @@
 # DisableAlphaBlend
 
-Desabilita o alpha blending.
+Disables alpha blending.
 
-## Assinatura
+## Signature
 
 ```lua
 DisableAlphaBlend() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Desabilita o alpha blending, retornando ao modo de renderização padrão (sem transparência). Sempre chame esta função após renderizar elementos transparentes.
+Disables alpha blending, returning to the default rendering mode (without transparency). Always call this function after rendering transparent elements.
 
-## Exemplos
+## Examples
 
-### Padrão de Uso
+### Usage Pattern
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Habilitar alpha blending
+    --Enable alpha blending
     EnableAlphaBlend()
     
-    -- Renderizar elementos transparentes
+    --Render transparent elements
     RenderBitmap(texture1, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     RenderBitmap(texture2, 150, 150, 200, 200, 0, 0, 1, 1, false, false, 0.7)
     
-    -- Desabilitar alpha blending
+    --Desabilitar alpha blending
     DisableAlphaBlend()
     
-    -- Renderizar elementos opacos (sem transparência)
+    --Render opaque elements (no transparency)
     RenderBitmap(texture3, 200, 200, 200, 200, 0, 0, 1, 1, false, false, 1.0)
 end
-```
-
-### Múltiplos Grupos
-
-```lua
+```### Multiple Groups```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Grupo 1: Elementos transparentes
+    --Group 1: Transparent elements
     EnableAlphaBlend()
     RenderBitmap(transparent1, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     DisableAlphaBlend()
     
-    -- Grupo 2: Elementos opacos
+    --Group 2: Opaque elements
     RenderBitmap(opaque1, 300, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
     
-    -- Grupo 3: Mais elementos transparentes
+    --Group 3: More transparent elements
     EnableAlphaBlend()
     RenderBitmap(transparent2, 100, 300, 200, 200, 0, 0, 1, 1, false, false, 0.7)
     DisableAlphaBlend()
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Sempre desabilite**: Sempre chame `DisableAlphaBlend()` após renderizar elementos transparentes
-2. **Performance**: Desabilitar quando não necessário melhora a performance
-3. **Estado padrão**: O estado padrão é com alpha blending desabilitado
-4. **Ordem importa**: Configure o estado antes de renderizar
+1. **Always disable**: Always call `DisableAlphaBlend()` after rendering transparent elements
+2. **Performance**: Disabling when not necessary improves performance
+3. **Default state**: The default state is with alpha blending disabled
+4. **Order matters**: Set state before rendering
 
-## Funções Relacionadas
+## Related Functions
 
-- [EnableAlphaBlend](EnableAlphaBlend.md) - Habilita alpha blending padrão
-- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Habilita alpha blending subtrativo
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [EnableAlphaBlend](EnableAlphaBlend.md) - Enables standard alpha blending
+- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Enable subtrative alpha blending
+- [RenderBitmap](RenderBitmap.md) - Renders image
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

@@ -1,48 +1,44 @@
 # Color4f
 
-Cria um valor de cor baseado em componentes float.
+Creates a color value based on float components.
 
-## Assinatura
+## Signature
 
 ```lua
 Color4f(r, g, b, a) -> DWORD
 ```
 
-## Parâmetros
+## Parameters
 
-- `r`, `g`, `b`, `a` (float): Componentes de cor (0.0 - 1.0)
+- `r `, ` g `, ` b `, ` a`(float): Color components (0.0 - 1.0)
 
-## Retorno
+## Return
 
-`DWORD` - Valor de cor no formato DWORD.
+`DWORD`- Color value in DWORD format.
 
-## Uso
+## Usage
 
-Cria um valor de cor usando componentes float (0.0 a 1.0). Útil para cálculos de cor e interpolação.
+Creates a color value using float components (0.0 to 1.0). Useful for color and interpolation calculations.
 
-## Exemplos
+## Examples
 
-### Criar Cores
+### Create Colors
 
 ```lua
--- Vermelho opaco
+--Dull red
 local red = Color4f(1.0, 0.0, 0.0, 1.0)
 
--- Verde semi-transparente
+--Semi-transparent green
 local green = Color4f(0.0, 1.0, 0.0, 0.5)
 
--- Azul opaco
+--opaque blue
 local blue = Color4f(0.0, 0.0, 1.0, 1.0)
 
--- Branco opaco
+--Opaque white
 local white = Color4f(1.0, 1.0, 1.0, 1.0)
-```
-
-### Interpolação de Cores
-
-```lua
+```### Color Interpolation```lua
 function InterpolateColor(color1, color2, t)
-    -- Interpolação linear entre duas cores
+    --Linear interpolation between two colors
     local r = color1.r + (color2.r - color1.r) * t
     local g = color1.g + (color2.g - color1.g) * t
     local b = color1.b + (color2.b - color1.b) * t
@@ -51,16 +47,16 @@ function InterpolateColor(color1, color2, t)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Float-based**: Usa valores de 0.0 a 1.0 em vez de 0-255
-2. **Cálculos**: Ideal para cálculos matemáticos e interpolação
-3. **DWORD**: Retorna valor DWORD compatível com o sistema
-4. **Precisão**: Mais preciso para cálculos que `RGBA`
+1. **Float-based**: Uses values ​​from 0.0 to 1.0 instead of 0-255
+2. **Calculations**: Ideal for mathematical calculations and interpolation
+3. **DWORD**: Returns DWORD value compatible with the system
+4. **Accuracy**: More accurate for calculations that `RGBA`
 
-## Funções Relacionadas
+## Related Functions
 
-- [RGBA](RGBA.md) - Cria cor usando valores 0-255
-- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Define cor do texto
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [RGBA](RGBA.md) - Creates color using values ​​0-255
+- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Set text color
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

@@ -1,84 +1,80 @@
 # RGBA
 
-Cria um valor de cor RGBA padrão.
+Creates a default RGBA color value.
 
-## Assinatura
+## Signature
 
 ```lua
 RGBA(r, g, b, a) -> DWORD
 ```
 
-## Parâmetros
+## Parameters
 
-- `r`, `g`, `b`, `a` (number): Componentes de cor (0 - 255)
+- `r `, ` g `, ` b `, ` a`(number): Cor components (0 - 255)
 
-## Retorno
+## Return
 
-`DWORD` - Valor de cor no formato DWORD.
+`DWORD`- Color value in DWORD format.
 
-## Uso
+## Usage
 
-Cria um valor de cor usando componentes inteiros (0 a 255). Mais intuitivo que `Color4f` para valores diretos.
+Creates a color value using integer components (0 to 255). More intuitive than `Color4f` for direct values.
 
-## Exemplos
+## Examples
 
-### Criar Cores Comuns
+### Create Common Colors
 
 ```lua
--- Vermelho opaco
+--Dull red
 local red = RGBA(255, 0, 0, 255)
 
--- Verde semi-transparente
+--Semi-transparent green
 local green = RGBA(0, 255, 0, 128)
 
--- Azul opaco
+--opaque blue
 local blue = RGBA(0, 0, 255, 255)
 
--- Branco opaco
+--Opaque white
 local white = RGBA(255, 255, 255, 255)
 
--- Preto opaco
+--Opaque black
 local black = RGBA(0, 0, 0, 255)
 
--- Amarelo opaco
+--dull yellow
 local yellow = RGBA(255, 255, 0, 255)
-```
-
-### Cores com Transparência
-
-```lua
--- Vermelho 50% transparente
+```### Colors with Transparency```lua
+--Red 50% transparent
 local redTransparent = RGBA(255, 0, 0, 128)
 
--- Verde 25% transparente
+--Green 25% transparent
 local greenTransparent = RGBA(0, 255, 0, 64)
 
--- Azul 75% transparente
+--Blue 75% transparent
 local blueTransparent = RGBA(0, 0, 255, 192)
 ```
 
-## Diferença entre RGBA e Color4f
+## Difference between RGBA and Color4f
 
-- **RGBA**: Usa valores inteiros de 0-255 (mais intuitivo)
-- **Color4f**: Usa valores float de 0.0-1.0 (melhor para cálculos)
+- **RGBA**: Uses integer values ​​from 0-255 (more intuitive)
+- **Color4f**: Uses float values ​​from 0.0-1.0 (best for calculations)
 
-**Exemplo de conversão:**
+**Conversion example:**
 ```lua
--- RGBA: 255, 0, 0, 255
--- Color4f: 1.0, 0.0, 0.0, 1.0
--- Ambos representam vermelho opaco
+--RGBA: 255, 0, 0, 255
+--Color4f: 1.0, 0.0, 0.0, 1.0
+--Both represent dull red
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Intuitivo**: Valores de 0-255 são mais fáceis de entender
-2. **Padrão**: Formato padrão para cores em muitos sistemas
-3. **DWORD**: Retorna valor DWORD compatível com o sistema
-4. **Uso comum**: Mais comum que `Color4f` para valores diretos
+1. **Intuitive**: Values ​​from 0-255 are easier to understand
+2. **Standard**: Standard format for colors on many systems
+3. **DWORD**: Returns DWORD value compatible with the system
+4. **Common use**: More common than `Color4f` for direct values
 
-## Funções Relacionadas
+## Related Functions
 
-- [Color4f](Color4f.md) - Cria cor usando valores float
-- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Define cor do texto
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [Color4f](Color4f.md) - Creates color using float values
+- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Set text color
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

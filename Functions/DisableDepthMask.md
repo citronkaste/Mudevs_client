@@ -1,52 +1,52 @@
 # DisableDepthMask
 
-Desabilita a escrita no Z-buffer.
+Disables writing to the Z-buffer.
 
-## Assinatura
+## Signature
 
 ```lua
 DisableDepthMask() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Desabilita a escrita no Z-buffer, permitindo que objetos sejam renderizados sem afetar o depth buffer. Útil para elementos que não devem interferir no depth test de outros objetos.
+Disables writing to the Z-buffer, allowing objects to be rendered without affecting the depth buffer. Useful for elements that should not interfere with the depth test of other objects.
 
-## Exemplos
+## Examples
 
-### Elementos que Não Afetam Depth
+### Elements That Do Not Affect Depth
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Desabilitar escrita no Z-buffer
+    --Disable writing to the Z-buffer
     DisableDepthMask()
     
-    -- Renderizar elementos que não devem afetar o depth buffer
+    --Render elements that should not affect the depth buffer
     RenderBitmap(overlayTexture, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     
-    -- Reabilitar (se necessário)
+    --Rehabilitate (if necessary)
     EnableDepthMask()
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Não afeta depth**: Objetos renderizados não atualizam o Z-buffer
-2. **Use para overlays**: Ideal para elementos que não devem interferir no depth test
-3. **Performance**: Pode melhorar performance em alguns casos
-4. **Combine com outras funções**: Use junto com outras funções de depth para controle completo
+1. **Does not affect depth**: Rendered objects do not update the Z-buffer
+2. **Use for overlays**: Ideal for elements that should not interfere with the depth test
+3. **Performance**: May improve performance in some cases
+4. **Combine with other functions**: Use together with other depth functions for complete control
 
-## Funções Relacionadas
+## Related Functions
 
-- [EnableDepthMask](EnableDepthMask.md) - Habilita escrita no Z-buffer
-- [DisableDepthTest](DisableDepthTest.md) - Desabilita teste de profundidade
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [EnableDepthMask](EnableDepthMask.md) - Enables written non-Z-buffer
+- [DisableDepthTest](DisableDepthTest.md) - Disable depth test
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

@@ -1,111 +1,99 @@
 # RenderBitmap
 
-Renderiza uma imagem 2D com controle completo de UV e transparência.
+Renders a 2D image with complete UV and transparency control.
 
-## Assinatura
+## Signature
 
 ```lua
 RenderBitmap(id, x, y, w, h, u, v, uw, vh, scale, startScale, alpha) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `id` (number): ID da textura
-- `x`, `y` (number): Posição na tela (pixels)
-- `w`, `h` (number): Largura e altura na tela (pixels)
-- `u`, `v` (number): Coordenadas UV iniciais (0.0 - 1.0)
-- `uw`, `vh` (number): Tamanho UV (0.0 - 1.0)
-- `scale` (bool): Aplicar escala
-- `startScale` (bool): Escala inicial
-- `alpha` (number): Transparência (0.0 = transparente, 1.0 = opaco)
+- `id`(number): ID da textura
+- `x `, ` y`(number): Position on the screen (pixels)
+- `w `, ` h`(number): Width and height on the screen (pixels)
+- `u `, ` v`(number): Initial UV coordinates (0.0 - 1.0)
+- `uw `, ` vh`(number): UV Size (0.0 - 1.0)
+- `scale`(bool): Apply scale
+- `startScale`(bool): Initial scale
+- `alpha`(number): Transparency (0.0 = transparent, 1.0 = opaque)
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Renderiza uma imagem 2D com controle completo sobre coordenadas UV, escala e transparência. Use quando precisar de controle preciso sobre a renderização.
+Renders a 2D image with complete control over UV coordinates, scale and transparency. Use when you need precise control over rendering.
 
-## Exemplos
+## Examples
 
-### Renderização Básica
+### Basic Rendering
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar textura completa
+    --Render full texture
     RenderBitmap(textureId, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
 end
-```
-
-### Sprite Sheet (Parte da Textura)
-
-```lua
+```### Sprite Sheet (Texture Part)```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar apenas parte da textura (sprite sheet)
-    -- u=0.25, v=0.25, uw=0.5, vh=0.5 = renderiza o quarto central da textura
+    --Render only part of the texture (sprite sheet)
+    --u=0.25, v=0.25, uw=0.5, vh=0.5 = renders the central quarter of the texture
     RenderBitmap(textureId, 100, 100, 64, 64, 0.25, 0.25, 0.5, 0.5, false, false, 1.0)
 end
-```
-
-### Com Transparência
-
-```lua
+```### With Transparency```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Habilitar alpha blending
+    --Enable alpha blending
     EnableAlphaBlend()
     
-    -- Renderizar com transparência (50%)
+    --Render with transparency (50%)
     RenderBitmap(textureId, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     
-    -- Desabilitar alpha blending
+    --Desabilitar alpha blending
     DisableAlphaBlend()
 end
-```
-
-### Animação de Sprite
-
-```lua
+```### Sprite animation```lua
 local frame = 0
 local frameTime = 0
 
 function BridgeFunction_OnInterfaceRender()
-    -- Atualizar frame da animação
+    --Update animation frame
     frameTime = frameTime + 1
     if frameTime > 10 then
-        frame = (frame + 1) % 4 -- 4 frames
+        frame = (frame + 1) % 4 --4 frames
         frameTime = 0
     end
     
-    -- Calcular UV para o frame atual
-    local u = (frame % 2) * 0.5 -- 2 colunas
-    local v = math.floor(frame / 2) * 0.5 -- 2 linhas
+    --Calculate UV for the current frame
+    local u = (frame % 2) * 0.5 --2 columns
+    local v = math.floor(frame / 2) * 0.5 --2 lines
     
-    -- Renderizar frame da animação
+    --Render animation frame
     RenderBitmap(spriteSheetId, 100, 100, 64, 64, u, v, 0.5, 0.5, false, false, 1.0)
 end
 ```
 
-## Parâmetros UV
+## UV Parameters
 
-- `u`, `v`: Coordenadas iniciais na textura (0.0 = início, 1.0 = fim)
-- `uw`, `vh`: Tamanho da área a renderizar (0.0 = nada, 1.0 = textura completa)
+- `u `, ` v`: Initial coordinates in the texture (0.0 = start, 1.0 = end)
+- `uw `, ` vh`: Size of the area to render (0.0 = nothing, 1.0 = full texture)
 
-**Exemplo de UV:**
-- `u=0, v=0, uw=1, vh=1`: Textura completa
-- `u=0.25, v=0.25, uw=0.5, vh=0.5`: Centro da textura (25% de cada lado)
+**Example of UV:**
+- `u=0, v=0, uw=1, vh=1`: Full texture
+- `u=0.25, v=0.25, uw=0.5, vh=0.5`: Center of the texture (25% on each side)
 
-## Notas Importantes
+## Important Notes
 
-1. **Controle completo**: Oferece controle total sobre UV, escala e transparência
-2. **Sprite sheets**: Ideal para sprite sheets e animações
-3. **Alpha blending**: Habilite `EnableAlphaBlend()` antes de usar transparência
-4. **Performance**: Mais custoso que `RenderImage`, use apenas quando necessário
+1. **Complete Control**: Gives you full control over UV, scaling and transparency
+2. **Sprite sheets**: Ideal for sprite sheets and animations
+3. **Alpha blending**: Habilite `EnableAlphaBlend()` before using transparency
+4. **Performance**: More expensive than `RenderImage`, use only when necessary
 
-## Funções Relacionadas
+## Related Functions
 
-- [RenderImage](RenderImage.md) - Versão simplificada de renderização
-- [EnableAlphaBlend](EnableAlphaBlend.md) - Habilita transparência
-- [LoadBitmap](LoadBitmap.md) - Carrega textura
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [RenderImage](RenderImage.md) - Simplified version of rendering
+- [EnableAlphaBlend](EnableAlphaBlend.md) - Enables transparency
+- [LoadBitmap](LoadBitmap.md) - Load texture
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

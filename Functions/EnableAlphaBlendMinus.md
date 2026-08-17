@@ -1,69 +1,65 @@
 # EnableAlphaBlendMinus
 
-Habilita o alpha blending subtrativo.
+Enables subtractive alpha blending.
 
-## Assinatura
+## Signature
 
 ```lua
 EnableAlphaBlendMinus() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Habilita o alpha blending subtrativo, que subtrai cores em vez de adicioná-las. Útil para efeitos de escurecimento, sombras e efeitos especiais.
+Enables subtractive alpha blending, which subtracts colors instead of adding them. Useful for darkening effects, shadows and special effects.
 
-## Exemplos
+## Examples
 
-### Efeito de Escurecimento
+### Darkening Effect
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Habilitar alpha blending subtrativo
+    --Enable subtrative alpha blending
     EnableAlphaBlendMinus()
     
-    -- Renderizar overlay escuro
+    --Render dark overlay
     RenderBitmap(darkOverlayTexture, 0, 0, 800, 600, 0, 0, 1, 1, false, false, 0.3)
     
-    -- Desabilitar
+    --Disable
     DisableAlphaBlend()
 end
-```
-
-### Sombra
-
-```lua
+```### Sombra```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar sombra com blending subtrativo
+    --Render shadow with subtractive blending
     EnableAlphaBlendMinus()
     RenderBitmap(shadowTexture, 105, 105, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     DisableAlphaBlend()
     
-    -- Renderizar objeto normal
+    --Render normal object
     EnableAlphaBlend()
     RenderBitmap(objectTexture, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
     DisableAlphaBlend()
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Efeito subtrativo**: Subtrai cores em vez de adicionar, criando efeito de escurecimento
-2. **Use com cuidado**: Pode criar efeitos inesperados se usado incorretamente
-3. **Sempre desabilite**: Chame `DisableAlphaBlend()` após usar
-4. **Efeitos especiais**: Ideal para sombras, overlays escuros e efeitos visuais especiais
+1. **Subtractive effect**: Subtracts colors instead of adding, creating a darkening effect
+2. **Use with caution**: May create unexpected effects if used incorrectly
+3. **Always disable**: Call `DisableAlphaBlend()` after using
+4. **Special effects**: Ideal for shadows, dark overlays and special visual effects
 
-## Funções Relacionadas
+## Related Functions
 
-- [EnableAlphaBlend](EnableAlphaBlend.md) - Habilita alpha blending padrão
-- [DisableAlphaBlend](DisableAlphaBlend.md) - Desabilita alpha blending
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [EnableAlphaBlend](EnableAlphaBlend.md) - Enables standard alpha blending
+- [DisableAlphaBlend](DisableAlphaBlend.md) - Disable alpha blending
+- [RenderBitmap](RenderBitmap.md) - Renders image
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

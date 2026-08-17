@@ -1,65 +1,57 @@
 # EnableAlphaBlend
 
-Habilita o alpha blending padrão (aditivo).
+Enables standard alpha blending (additive).
 
-## Assinatura
+## Signature
 
 ```lua
 EnableAlphaBlend() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Habilita o alpha blending padrão, permitindo renderizar objetos com transparência. Use antes de renderizar elementos transparentes e desabilite depois com `DisableAlphaBlend`.
+Enables standard alpha blending, allowing you to render objects with transparency. Use before rendering transparent elements and disable afterwards with `DisableAlphaBlend`.
 
-## Exemplos
+## Examples
 
-### Renderização com Transparência
+### Transparency Rendering
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Habilitar alpha blending
+    --Enable alpha blending
     EnableAlphaBlend()
     
-    -- Renderizar imagem com transparência (50%)
+    --Render image with transparency (50%)
     RenderBitmap(textureId, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     
-    -- Desabilitar alpha blending
+    --Desabilitar alpha blending
     DisableAlphaBlend()
 end
-```
-
-### Múltiplos Elementos Transparentes
-
-```lua
+```### Multiple Transparent Elements```lua
 function BridgeFunction_OnInterfaceRender()
     EnableAlphaBlend()
     
-    -- Renderizar múltiplos elementos transparentes
+    --Render multiple elements transparent
     RenderBitmap(texture1, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 0.7)
     RenderBitmap(texture2, 150, 150, 200, 200, 0, 0, 1, 1, false, false, 0.5)
     RenderBitmap(texture3, 200, 200, 200, 200, 0, 0, 1, 1, false, false, 0.3)
     
     DisableAlphaBlend()
 end
-```
-
-### Fade In/Out
-
-```lua
+```### Fade In/Out```lua
 local alpha = 0.0
 local fadingIn = true
 
 function BridgeFunction_OnInterfaceRender()
-    -- Atualizar alpha
+    --Update alpha
     if fadingIn then
         alpha = alpha + 0.01
         if alpha >= 1.0 then
@@ -74,24 +66,24 @@ function BridgeFunction_OnInterfaceRender()
         end
     end
     
-    -- Renderizar com fade
+    --Render with fade
     EnableAlphaBlend()
     RenderBitmap(textureId, 100, 100, 200, 200, 0, 0, 1, 1, false, false, alpha)
     DisableAlphaBlend()
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Sempre desabilite depois**: Chame `DisableAlphaBlend()` após renderizar elementos transparentes
-2. **Performance**: Alpha blending tem um custo de performance, use apenas quando necessário
-3. **Ordem importa**: Configure o estado antes de renderizar
-4. **Combine com RenderBitmap**: Use o parâmetro `alpha` de `RenderBitmap` para controlar transparência
+1. **Always disable later**: Call `DisableAlphaBlend()` after rendering transparent elements
+2. **Performance**: Alpha blending has a performance cost, use only when necessary
+3. **Order matters**: Set state before rendering
+4. **Combine with RenderBitmap**: Use the parameter `alpha ` of `RenderBitmap` to control transparency
 
-## Funções Relacionadas
+## Related Functions
 
-- [DisableAlphaBlend](DisableAlphaBlend.md) - Desabilita alpha blending
-- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Habilita alpha blending subtrativo
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem com controle de alpha
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [DisableAlphaBlend](DisableAlphaBlend.md) - Disable alpha blending
+- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Enable subtrative alpha blending
+- [RenderBitmap](RenderBitmap.md) - Renders image with alpha control
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

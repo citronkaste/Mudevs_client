@@ -1,121 +1,113 @@
 # SEASON3B_IsRelease
 
-Verifica se uma tecla foi solta no frame atual.
+Checks whether a key was released in the current frame.
 
-## Assinatura
+## Signature
 
 ```lua
 SEASON3B_IsRelease(key) -> bool
 ```
 
-## Parâmetros
+## Parameters
 
-- `key` (number): Código VK da tecla (ex: `0x4D` para M)
+- `key `(number): VK code of the key (ex:` 0x4D`for M)
 
-## Retorno
+## Return
 
-`bool` - `true` se a tecla foi solta no frame atual, `false` caso contrário.
+`bool ` - ` true `if the key was released in the current frame,` false`otherwise.
 
-## Características
+## Features
 
-- Retorna `true` apenas uma vez quando a tecla é solta
-- Útil para detectar quando o jogador para de pressionar uma tecla
-- Deve ser chamado dentro de `BridgeFunction_OnInterfaceRender`
+- Return `true` only once when the key is released
+- Useful for detecting when the player stops pressing a key
+- Must be called within `BridgeFunction_OnInterfaceRender`
 
-## Exemplos
+## Examples
 
-### Detectar Soltura de Tecla
+### Detect Key Release
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    if SEASON3B_IsRelease(0x1B) then -- VK_ESCAPE
-        -- Tecla ESC foi solta
-        print("ESC solto")
+    if SEASON3B_IsRelease(0x1B) then --VK_ESCAPE
+        --ESC key was released
+        print("ESC loose")
     end
 end
-```
-
-### Toggle ao Soltar
-
-```lua
+```### Toggle on Release```lua
 local holdingSpace = false
 
 function BridgeFunction_OnInterfaceRender()
-    if SEASON3B_IsPress(0x20) then -- VK_SPACE
+    if SEASON3B_IsPress(0x20) then --VK_SPACE
         holdingSpace = true
     end
     
-    if SEASON3B_IsRelease(0x20) then -- VK_SPACE
+    if SEASON3B_IsRelease(0x20) then --VK_SPACE
         holdingSpace = false
-        -- Executar ação quando soltar
-        print("Espaço solto - executar ação")
+        --Take action when release
+        print("Loose space - take action")
     end
 end
-```
-
-### Sistema de Hold
-
-```lua
+```### Hold System```lua
 local holdingKey = false
 
 function BridgeFunction_OnInterfaceRender()
-    if SEASON3B_IsPress(0x4D) then -- VK_M
+    if SEASON3B_IsPress(0x4D) then --VK_M
         holdingKey = true
-        print("Tecla M pressionada")
+        print("M key pressed")
     end
     
-    if SEASON3B_IsRelease(0x4D) then -- VK_M
+    if SEASON3B_IsRelease(0x4D) then --VK_M
         holdingKey = false
-        print("Tecla M solta")
+        print("M key loose")
     end
     
-    -- Fazer algo enquanto está pressionado
+    --Do something while pressed
     if holdingKey then
         -- ...
     end
 end
 ```
 
-## Diferença entre IsPress, IsRelease, IsRepeat e IsNone
+## Difference between IsPress, IsRelease, IsRepeat and IsNone
 
-- **IsPress**: Retorna `true` uma vez quando a tecla é pressionada
-- **IsRelease**: Retorna `true` uma vez quando a tecla é solta
-- **IsRepeat**: Retorna `true` continuamente enquanto a tecla está pressionada
-- **IsNone**: Retorna `true` quando a tecla não está pressionada
+- **IsPress**: Returns `true` once when the key is pressed
+- **IsRelease**: Returns `true` once when the key is released
+- **IsRepeat**: Returns `true` continuously while the key is pressed
+- **IsNone**: Returns `true` when the key is not pressed
 
-**Exemplo:**
+**Example:**
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if SEASON3B_IsPress(0x4D) then
-        print("M pressionado")
+        print("M pressed")
     end
     
     if SEASON3B_IsRelease(0x4D) then
-        print("M solto")
+        print("M loose")
     end
     
     if SEASON3B_IsRepeat(0x4D) then
-        print("M mantido pressionado")
+        print("M held pressed")
     end
     
     if SEASON3B_IsNone(0x4D) then
-        -- M não está pressionado
+        --M is not pressed
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Chamada no OnInterfaceRender**: Esta função deve ser chamada dentro de `BridgeFunction_OnInterfaceRender`
-2. **Uma vez por frame**: Retorna `true` apenas uma vez quando a tecla é solta
-3. **Use constantes**: Defina constantes para códigos VK comuns
-4. **Performance**: A função é muito rápida, pode ser chamada a cada frame
+1. **Call on OnInterfaceRender**: This function must be called within `BridgeFunction_OnInterfaceRender`
+2. **Once per frame**: Returns `true` only once when the key is released
+3. **Use constants**: Define constants for common VK codes
+4. **Performance**: The function is very fast, it can be called every frame
 
-## Funções Relacionadas
+## Related Functions
 
-- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Verifica se tecla foi pressionada
-- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Verifica se tecla está sendo mantida
-- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Verifica se tecla não está pressionada
-- [Enumerações](../02-Enumeracoes.md) - Códigos VK completos
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Checks if key was pressed
+- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Checks if the key is being held
+- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Checks if the key is not pressed
+- [Enumerations](../02-Enumerations.md) - Complete VK codes
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

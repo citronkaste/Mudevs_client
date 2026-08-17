@@ -1,91 +1,91 @@
-# Funções Individuais - Índice
+# Individual Functions - Index
 
-Esta pasta contém a documentação detalhada de cada função da API Lua do Game Client, organizadas por categoria.
+This folder contains detailed documentation for each Game Client Lua API function, organized by category.
 
-Cada função possui sua própria página com exemplos práticos, descrição de parâmetros, valores de retorno e funções relacionadas.
+Each function has its own page with practical examples, parameter descriptions, return values, and related functions.
 
-## 📋 Índice por Categoria
+## 📋 Index by Category
 
 ### 🖱️ Input & Mouse
-- [IsMouseClicked](IsMouseClicked.md) - Verifica se botão esquerdo foi clicado
-- [IsMouseHeld](IsMouseHeld.md) - Verifica se botão esquerdo está pressionado
-- [CheckMouseIn](CheckMouseIn.md) - Verifica se mouse está em área retangular
-- [SetBlockInput](SetBlockInput.md) - Bloqueia/desbloqueia input do jogo
-- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Verifica se tecla foi pressionada
-- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Verifica se tecla foi solta
-- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Verifica se tecla está sendo mantida
-- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Verifica se tecla não está pressionada
+- [IsMouseClicked](IsMouseClicked.md) - Checks if left button was clicked
+- [IsMouseHeld](IsMouseHeld.md) - Checks if the left button is pressed
+- [CheckMouseIn](CheckMouseIn.md) - Checks if the mouse is in a rectangular area
+- [SetBlockInput](SetBlockInput.md) - Lock/unlock game input
+- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Checks if key was pressed
+- [SEASON3B_IsRelease](SEASON3B_IsRelease.md) - Checks if the key has been released
+- [SEASON3B_IsRepeat](SEASON3B_IsRepeat.md) - Checks if the key is being held
+- [SEASON3B_IsNone](SEASON3B_IsNone.md) - Checks if the key is not pressed
 
 ### 🎨 Rendering & Graphics
-- [EnableAlphaBlend](EnableAlphaBlend.md) - Habilita alpha blending padrão
-- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Habilita alpha blending subtrativo
-- [DisableAlphaBlend](DisableAlphaBlend.md) - Desabilita alpha blending
-- [DisableDepthTest](DisableDepthTest.md) - Desabilita teste de profundidade
-- [EnableDepthMask](EnableDepthMask.md) - Habilita escrita no Z-buffer
-- [DisableDepthMask](DisableDepthMask.md) - Desabilita escrita no Z-buffer
-- [DisableTexture](DisableTexture.md) - Desabilita texturização
+- [EnableAlphaBlend](EnableAlphaBlend.md) - Enables standard alpha blending
+- [EnableAlphaBlendMinus](EnableAlphaBlendMinus.md) - Enable subtrative alpha blending
+- [DisableAlphaBlend](DisableAlphaBlend.md) - Disable alpha blending
+- [DisableDepthTest](DisableDepthTest.md) - Disable depth test
+- [EnableDepthMask](EnableDepthMask.md) - Enables written non-Z-buffer
+- [DisableDepthMask](DisableDepthMask.md) - Disables writing to the Z-buffer
+- [DisableTexture](DisableTexture.md) - Disables texturing
 - [EnableLightMap](EnableLightMap.md) - Habilita lightmapping
-- [BindTexture](BindTexture.md) - Vincula textura para renderização
-- [LoadBitmap](LoadBitmap.md) - Carrega textura de arquivo
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem 2D com controle completo
-- [RenderImage](RenderImage.md) - Renderiza imagem 2D simplificada
-- [Color4f](Color4f.md) - Cria cor baseada em float
-- [RGBA](RGBA.md) - Cria cor RGBA padrão
+- [BindTexture](BindTexture.md) - Links texture for rendering
+- [LoadBitmap](LoadBitmap.md) - Load texture from file
+- [RenderBitmap](RenderBitmap.md) - Renders 2D image with complete control
+- [RenderImage](RenderImage.md) - Renders simplified 2D image
+- [Color4f](Color4f.md) - Creates color based on float
+- [RGBA](RGBA.md) - Creates standard RGBA color
 
 ### 📝 Text & UI
-- [UIRenderText_SetFont](UIRenderText_SetFont.md) - Define fonte para texto
-- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Define cor do texto
-- [UIRenderText_SetBgColor](UIRenderText_SetBgColor.md) - Define cor de fundo do texto
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderiza texto na tela
-- [RenderTipText](RenderTipText.md) - Renderiza texto estilo tooltip
-- [IsWriteInterfaceOpen](IsWriteInterfaceOpen.md) - Verifica se interface de escrita está aberta
+- [UIRenderText_SetFont](UIRenderText_SetFont.md) - Set font for text
+- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Set text color
+- [UIRenderText_SetBgColor](UIRenderText_SetBgColor.md) - Set text background color
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renders text on screen
+- [RenderTipText](RenderTipText.md) - Renders tooltip style text
+- [IsWriteInterfaceOpen](IsWriteInterfaceOpen.md) - Checks if the writing interface is open
 
 ### 👤 Object Management
-- [GetCharacter](GetCharacter.md) - Obtém objeto de personagem
-- [GetModel](GetModel.md) - Obtém objeto de modelo 3D
+- [GetCharacter](GetCharacter.md) - Gets character object
+- [GetModel](GetModel.md) - Gets 3D model object
 
 ### 🎮 Bridge Functions (Hooks)
-- [BridgeFunction_OnLoadInterface](BridgeFunction_OnLoadInterface.md) - Quando UI está inicializando
-- [BridgeFunction_OnInterfaceRender](BridgeFunction_OnInterfaceRender.md) - Loop crítico de renderização
-- [BridgeFunction_OnPacketRecv](BridgeFunction_OnPacketRecv.md) - Quando pacote é recebido
+- [BridgeFunction_OnLoadInterface](BridgeFunction_OnLoadInterface.md) - When UI is initializing
+- [BridgeFunction_OnInterfaceRender](BridgeFunction_OnInterfaceRender.md) - Critical rendering loop
+- [BridgeFunction_OnPacketRecv](BridgeFunction_OnPacketRecv.md) - When package is received
 
-## 📝 Formato da Documentação
+## 📝 Documentation Format
 
-Cada arquivo de função segue um formato padronizado:
+Each function file follows a standardized format:
 
-1. **Título**: Nome da função
-2. **Assinatura**: Como chamar a função (sintaxe)
-3. **Parâmetros**: Descrição detalhada de cada parâmetro
-4. **Retorno**: O que a função retorna
-5. **Exemplos**: Exemplos práticos de uso
-6. **Notas**: Informações importantes e considerações
-7. **Funções Relacionadas**: Links para funções relacionadas
+1. **Title**: Name of the function
+2. **Signature**: How to call the function (syntax)
+3. **Parameters**: Detailed description of each parameter
+4. **Return**: What the function returns
+5. **Examples**: Practical examples of use
+6. **Notes**: Important information and considerations
+7. **Related Functions**: Links to related functions
 
-## 🔍 Como Usar Esta Documentação
+## 🔍 How to Use This Documentation
 
-### Buscar uma Função
+### Search for a Role
 
-1. **Por categoria**: Navegue pelas categorias acima para encontrar funções relacionadas
-2. **Por nome**: Os arquivos são nomeados exatamente como as funções (ex: `IsMouseClicked.md` para `IsMouseClicked`)
-3. **Busca no editor**: Use a busca do seu editor para encontrar funções específicas
+1. **By Category**: Browse the categories above to find related roles
+2. **By name**: The files are named exactly like the functions (ex:`IsMouseClicked.md ` to ` IsMouseClicked`)
+3. **Editor Search**: Use your editor search to find specific functions
 
-### Estrutura de Navegação
+### Navigation Structure
 
-- Cada função tem sua própria página com documentação completa
-- Use os links "Funções Relacionadas" no final de cada página para explorar funções similares
-- Consulte a documentação principal para visão geral dos sistemas
+- Each function has its own page with complete documentation
+- Use the "Related Functions" links at the end of each page to explore similar functions
+- Consult the main documentation for systems overview
 
-## 📚 Documentação Relacionada
+## 📚 Related Documentation
 
-Para informações mais detalhadas sobre os sistemas, consulte:
+For more detailed information about the systems, see:
 
-- [Documentação Principal](../README.md) - Visão geral e índice completo
+- [Main Documentation](../README.md) - Overview and complete index
 - [Bridge Functions](../05-Bridge-Functions.md) - Sistema de hooks e callbacks
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Sistema completo de renderização
-- [Sistema de Input](../07-Sistema-Input.md) - Input, mouse e teclado
-- [Sistema de UI](../08-Sistema-UI.md) - Interface de usuário e texto
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system
+- [Input System](../07-Input-System.md) - Input, mouse and keyboard
+- [UI System](../08-UI-System.md) - User interface and text
 
 ---
 
-**Fonte**: Esta documentação é baseada em `Api.md` - Documentação oficial da API Lua do Game Client.
+**Source**: This documentation is based on `Api.md`- Official documentation of the Game Client Lua API.
 

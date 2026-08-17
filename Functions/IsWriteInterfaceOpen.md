@@ -1,80 +1,72 @@
 # IsWriteInterfaceOpen
 
-Verifica se a interface de escrita (chat/input) está aberta.
+Checks whether the writing interface (chat/input) is open.
 
-## Assinatura
+## Signature
 
 ```lua
 IsWriteInterfaceOpen() -> bool
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`bool` - `true` se a interface de escrita está aberta, `false` caso contrário.
+`bool ` - ` true `if the writing interface is open,` false`otherwise.
 
-## Uso
+## Usage
 
-Verifica se o jogador está digitando no chat ou em uma interface de input. Útil para desabilitar certas funcionalidades quando o jogador está digitando.
+Checks whether the player is typing in chat or in an input interface. Useful for disabling certain features when the player is typing.
 
-## Exemplos
+## Examples
 
-### Desabilitar Input Customizado Durante Chat
+### Disable Custom Input During Chat
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Não processar input customizado se chat está aberto
+    --Do not process custom input if chat is open
     if IsWriteInterfaceOpen() then
         return
     end
     
-    -- Processar input customizado apenas quando chat está fechado
-    if SEASON3B_IsPress(0x4D) then -- VK_M
-        -- Fazer algo
+    --Process custom input only when chat is closed
+    if SEASON3B_IsPress(0x4D) then --VK_M
+        --Do something
     end
 end
-```
-
-### Mostrar Indicador
-
-```lua
+```### Show Indicator```lua
 function BridgeFunction_OnInterfaceRender()
     if IsWriteInterfaceOpen() then
-        -- Mostrar indicador de que está digitando
+        --Show typing indicator
         UIRenderText_SetTextColor(255, 255, 0, 255)
-        UIRenderText_RenderText(10, 10, "Digitando...", 150, 20, 1)
+        UIRenderText_RenderText(10, 10, "Typing...", 150, 20, 1)
     end
 end
-```
-
-### Pausar UI Durante Input
-
-```lua
+```### Pause UI During Input```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Pausar UI customizada durante input
+    --Pause custom UI during input
     if IsWriteInterfaceOpen() then
-        -- Não renderizar UI customizada
+        --Do not render custom UI
         return
     end
     
-    -- Renderizar UI normalmente
+    --Render UI normally
     -- ...
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Chat/Input**: Verifica se qualquer interface de escrita está aberta
-2. **Desabilitar funcionalidades**: Use para desabilitar funcionalidades durante input
-3. **Performance**: Função muito rápida, pode ser chamada a cada frame
-4. **UX**: Melhora a experiência do usuário evitando conflitos de input
+1. **Chat/Input**: Checks if any writing interface is open
+2. **Disable features**: Use to disable features during input
+3. **Performance**: Very fast function, can be called every frame
+4. **UX**: Improves user experience by avoiding input conflicts
 
-## Funções Relacionadas
+## Related Functions
 
-- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Verifica se tecla foi pressionada
-- [SetBlockInput](SetBlockInput.md) - Bloqueia input do jogo
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [SEASON3B_IsPress](SEASON3B_IsPress.md) - Checks if key was pressed
+- [SetBlockInput](SetBlockInput.md) - Blocks game input
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

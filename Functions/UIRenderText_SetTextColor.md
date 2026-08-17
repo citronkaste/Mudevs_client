@@ -1,74 +1,66 @@
 # UIRenderText_SetTextColor
 
-Define a cor do texto.
+Sets the color of the text.
 
-## Assinatura
+## Signature
 
 ```lua
 UIRenderText_SetTextColor(r, g, b, a) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `r`, `g`, `b`, `a` (number): Componentes de cor (0 - 255)
+- `r `, ` g `, ` b `, ` a`(number): Cor components (0 - 255)
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Define a cor que será usada para renderizar texto. Configure a cor antes de chamar `UIRenderText_RenderText`.
+Sets the color that will be used to render text. Configure the color before calling `UIRenderText_RenderText`.
 
-## Exemplos
+## Examples
 
-### Cores Básicas
+### Basic Colors
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Texto vermelho
+    --Red text
     UIRenderText_SetTextColor(255, 0, 0, 255)
-    UIRenderText_RenderText(100, 100, "Texto Vermelho", 200, 20, 1)
+    UIRenderText_RenderText(100, 100, "Red Text", 200, 20, 1)
     
-    -- Texto verde
+    --Green text
     UIRenderText_SetTextColor(0, 255, 0, 255)
-    UIRenderText_RenderText(100, 130, "Texto Verde", 200, 20, 1)
+    UIRenderText_RenderText(100, 130, "Green Text", 200, 20, 1)
     
-    -- Texto azul
+    --Blue text
     UIRenderText_SetTextColor(0, 0, 255, 255)
-    UIRenderText_RenderText(100, 160, "Texto Azul", 200, 20, 1)
+    UIRenderText_RenderText(100, 160, "Blue Text", 200, 20, 1)
     
-    -- Texto branco
+    --White text
     UIRenderText_SetTextColor(255, 255, 255, 255)
-    UIRenderText_RenderText(100, 190, "Texto Branco", 200, 20, 1)
+    UIRenderText_RenderText(100, 190, "White Text", 200, 20, 1)
 end
-```
-
-### Texto com Transparência
-
-```lua
+```### Text with Transparency```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Texto semi-transparente (50%)
+    --Semi-transparent text (50%)
     UIRenderText_SetTextColor(255, 255, 255, 128)
-    UIRenderText_RenderText(100, 100, "Texto Semi-transparente", 250, 20, 1)
+    UIRenderText_RenderText(100, 100, "Semi-transparent text", 250, 20, 1)
 end
-```
-
-### Cores Dinâmicas
-
-```lua
+```### Dynamic Colors```lua
 function BridgeFunction_OnInterfaceRender()
     if Hero then
-        -- Cor baseada no HP
+        --Non-HP based core
         local hpPercent = (Hero.CurHP / Hero.MaxHP) * 100
         local r, g, b = 255, 255, 255
         
         if hpPercent < 30 then
-            r, g, b = 255, 0, 0 -- Vermelho (pouco HP)
+            r, g, b = 255, 0, 0 --Red (low HP)
         elseif hpPercent < 60 then
-            r, g, b = 255, 255, 0 -- Amarelo (HP médio)
+            r, g, b = 255, 255, 0 --Yellow (medium HP)
         else
-            r, g, b = 0, 255, 0 -- Verde (HP alto)
+            r, g, b = 0, 255, 0 --Green (High HP)
         end
         
         UIRenderText_SetTextColor(r, g, b, 255)
@@ -78,17 +70,17 @@ function BridgeFunction_OnInterfaceRender()
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Configure antes de renderizar**: Defina a cor antes de chamar `UIRenderText_RenderText`
-2. **Componentes 0-255**: Use valores de 0 a 255 para cada componente
-3. **Alpha**: O componente alpha controla transparência (255 = opaco, 0 = transparente)
-4. **Persistência**: A cor definida será usada até que seja alterada
+1. **Set before rendering**: Set the color before calling `UIRenderText_RenderText`
+2. **Components 0-255**: Use values ​​from 0 to 255 for each component
+3. **Alpha**: The alpha component controls transparency (255 = opaque, 0 = transparent)
+4. **Persistence**: The defined color will be used until it is changed
 
-## Funções Relacionadas
+## Related Functions
 
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderiza texto
-- [UIRenderText_SetBgColor](UIRenderText_SetBgColor.md) - Define cor de fundo
-- [RGBA](RGBA.md) - Cria valor de cor
-- [Sistema de UI](../08-Sistema-UI.md) - Documentação completa do sistema de UI
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renders text
+- [UIRenderText_SetBgColor](UIRenderText_SetBgColor.md) - Set background color
+- [RGBA](RGBA.md) - Creates color value
+- [UI System](../08-UI-System.md) - Complete UI System documentation
 

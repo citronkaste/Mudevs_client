@@ -1,80 +1,68 @@
 # GetCharacter
 
-Obtém um objeto de personagem (player, monster, NPC) a partir de seu índice.
+Gets a character object (player, monster, NPC) from its index.
 
-## Assinatura
+## Signature
 
 ```lua
 GetCharacter(index) -> GameCharacter
 ```
 
-## Parâmetros
+## Parameters
 
-- `index` (number): O índice do personagem no jogo
+- `index`(number): The character's index in the game
 
-## Retorno
+## Return
 
-`GameCharacter` ou `nil` - O objeto de personagem se existir, ou `nil` se o índice for inválido ou o personagem não existir.
+`GameCharacter ` or`nil `- The character object if it exists, or` nil`if the index is invalid or the character does not exist.
 
-## Exemplos
+## Examples
 
-### Uso Básico
+### Basic Use
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    local character = GetCharacter(0) -- Exemplo de índice
+    local character = GetCharacter(0) --Index example
     if character then
-        -- Personagem encontrado
+        --Character found
         local text = string.format("Nome: %s, Level: %d", character.ID, character.Level)
         UIRenderText_RenderText(100, 100, text, 300, 20, 1)
     end
 end
-```
-
-### Verificação de Tipo
-
-```lua
+```### Type Check```lua
 function BridgeFunction_OnInterfaceRender()
     local character = GetCharacter(index)
     if character then
         if character.Kind == 0 then
-            -- É um jogador
-            UIRenderText_RenderText(10, 10, "Jogador: " .. character.ID, 300, 20, 1)
+            --He's a player
+            UIRenderText_RenderText(10, 10, "Player:" .. character.ID, 300, 20, 1)
         elseif character.Kind == 1 then
-            -- É um monstro
-            UIRenderText_RenderText(10, 10, "Monstro: " .. character.Class, 300, 20, 1)
+            --It's a monster
+            UIRenderText_RenderText(10, 10, "Monster:" .. character.Class, 300, 20, 1)
         elseif character.Kind == 2 then
-            -- É um NPC
+            --It's an NPC
             UIRenderText_RenderText(10, 10, "NPC", 300, 20, 1)
         end
     end
 end
-```
-
-### Usando Hero (Jogador Local)
-
-```lua
+```### Using Hero (Local Player)```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Hero é equivalente a GetCharacter(index) para o jogador local
+    --Hero is equivalent to GetCharacter(index) for local player
     if Hero then
         local hpPercent = (Hero.CurHP / Hero.MaxHP) * 100
         local text = string.format("%s - HP: %.1f%%", Hero.ID, hpPercent)
         UIRenderText_RenderText(10, 10, text, 300, 20, 1)
     end
 end
-```
-
-### Verificação de Alvo Selecionado
-
-```lua
+```### Selected Target Check```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Usar SelectedCharacter (variável global) é mais eficiente
+    --Using SelectedCharacter (global variable) is more efficient
     if SelectedCharacter then
         local text = string.format("Alvo: %s (Lv.%d)", 
             SelectedCharacter.ID, SelectedCharacter.Level)
         UIRenderText_RenderText(10, 10, text, 300, 20, 1)
         
-        -- Mostrar HP do alvo
+        --Show target's HP
         if SelectedCharacter.CurHP > 0 then
             local hpPercent = (SelectedCharacter.CurHP / SelectedCharacter.MaxHP) * 100
             local hpText = string.format("HP: %.1f%%", hpPercent)
@@ -84,41 +72,41 @@ function BridgeFunction_OnInterfaceRender()
 end
 ```
 
-## Propriedades do Objeto Retornado
+## Returned Object Properties
 
-O objeto retornado possui várias propriedades dependendo do tipo:
+The returned object has several properties depending on the type:
 
-### Propriedades Comuns
+### Common Properties
 
-- `ID` (string): Nome/ID do personagem
-- `Class` (int): Código da classe
-- `Level` (int): Nível do personagem
-- `Kind` (int): Tipo de entidade (0=Player, 1=Monster, 2=NPC)
-- `PositionX`, `PositionY` (int): Coordenadas no mundo
-- `CurHP`, `MaxHP` (float): Vida atual e máxima
-- `Dead` (int): 1 se morto, 0 caso contrário
+- `ID`(string): Character name/ID
+- `Class`(int): Class code
+- `Level`(int): Character level
+- `Kind`(int): Entity type (0=Player, 1=Monster, 2=NPC)
+- `PositionX `, ` PositionY`(int): Coordinates in the world
+- `CurHP `, ` MaxHP`(float): Current and maximum health
+- `Dead`(int): 1 if killed, 0 otherwise
 
-### Propriedades Específicas de Jogadores
+### Player Specific Properties
 
-- `CtlCode` (int): Código de controle (0=Normal, 8=GM, 32=Admin)
-- `PK` (int): Nível PK (3=Common, 6=Phonomania)
-- `GuildStatus` (int): Status na guild
-- `SafeZone` (int): 1 se está em Safe Zone
+- `CtlCode`(int): Control code (0=Normal, 8=GM, 32=Admin)
+- `PK`(int): PK Level (3=Common, 6=Phonomania)
+- `GuildStatus`(int): Status na guild
+- `SafeZone`(int): 1 if you are in Safe Zone
 
-Veja [GameCharacter](../04-Objetos-Game.md#gamecharacter) para lista completa de propriedades.
+Look[GameCharacter](../04-Game-Objects.md#gamecharacter)for full list of properties.
 
-## Notas Importantes
+## Important Notes
 
-1. **Sempre valide o retorno**: `GetCharacter` pode retornar `nil` se o índice for inválido
-2. **Use Hero para jogador local**: A variável global `Hero` é mais eficiente que `GetCharacter` para o jogador local
-3. **Use SelectedCharacter para alvo**: A variável global `SelectedCharacter` é mais eficiente para o alvo selecionado
-4. **Verifique o tipo**: Use `character.Kind` para verificar se é o tipo esperado
-5. **Performance**: A função é rápida, mas evite chamá-la múltiplas vezes no mesmo frame para o mesmo índice
+1. **Always validate the return**:`GetCharacter ` can return`nil` if the index is invalid
+2. **Use Hero for local player**: The global variable `Hero` is more efficient than `GetCharacter` for local player
+3. **Use SelectedCharacter to target**: The global variable `SelectedCharacter` is more efficient for the selected target
+4. **Check type**: Use `character.Kind` to check if it is the expected type
+5. **Performance**: The function is fast, but avoid calling it multiple times in the same frame for the same index
 
-## Funções Relacionadas
+## Related Functions
 
-- [GetModel](GetModel.md) - Obtém objeto de modelo 3D
-- [Hero](../10-Variaveis-Globais.md#hero) - Variável global do jogador local
-- [SelectedCharacter](../10-Variaveis-Globais.md#selectedcharacter) - Variável global do alvo selecionado
-- [Objetos do Jogo](../04-Objetos-Game.md) - Documentação completa dos objetos
+- [GetModel](GetModel.md) - Gets 3D model object
+- [Hero](../10-Global-Variables.md#hero) - Local player global variable
+- [SelectedCharacter](../10-Global-Variables.md#selectedcharacter) - Global variable of the selected target
+- [Game Objects](../04-Game-Objects.md) - Complete documentation of objects
 

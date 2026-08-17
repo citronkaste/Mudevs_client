@@ -1,99 +1,98 @@
-# Documentação da API Lua - Mu Online Client
+# Lua API documentation - Mu Online Client
 
-Documentação completa e organizada da API Lua do Game Client, incluindo todas as funções, classes, propriedades e hooks disponíveis para desenvolvimento de scripts client-side.
+Complete and organized documentation of the Game Client Lua API, including all functions, classes, properties and hooks available for developing client-side scripts.
 
-## 📋 Índice
+## 📋 Index
 
-### 📚 Documentação Principal
+### 📚 Main Documentation
 
-Documentação temática organizada por sistemas:
+Thematic documentation organized by systems:
 
-1. **[Introdução e Princípios](01-Introducao.md)** - Visão geral do sistema e princípios de design
-2. **[Enumerações e Constantes](02-Enumeracoes.md)** - Constantes globais do sistema
-3. **[Funções Globais de Utilidade](03-Funcoes-Globais.md)** - Funções auxiliares básicas
-4. **[Objetos do Jogo](04-Objetos-Game.md)** - Objetos principais (Character, Model, Item, etc.)
-5. **[Bridge Functions (Hooks)](05-Bridge-Functions.md)** - Funções de callback do sistema
-6. **[Sistema de Renderização](06-Sistema-Renderizacao.md)** - Sistema completo de renderização e gráficos
-7. **[Sistema de Input](07-Sistema-Input.md)** - Input, mouse e teclado
-8. **[Sistema de UI](08-Sistema-UI.md)** - Interface de usuário e texto
-9. **[Sistema de Pacotes](09-Sistema-Pacotes.md)** - Manipulação de pacotes de rede
-10. **[Variáveis Globais](10-Variaveis-Globais.md)** - Variáveis globais disponíveis
+1. **[Introduction and Principles](01-Introduction.md)** - System overview and design principles
+2. **[Enumerations and Constants](02-Enumerations.md)** - Global system constants
+3. **[Global Utility Functions](03-Global-Functions.md)** - Basic auxiliary functions
+4. **[Game Objects](04-Game-Objects.md)** - Main objects (Character, Model, Item, etc.)
+5. **[Bridge Functions (Hooks)](05-Bridge-Functions.md)** - System callback functions
+6. **[Rendering System](06-Rendering-System.md)** - Complete rendering and graphics system
+7. **[Input System](07-Input-System.md)** - Input, mouse and keyboard
+8. **[UI System](08-UI-System.md)** - User interface and text
+9. **[Packet System](09-Packet-System.md)** - Network packet handling
+10. **[Global Variables](10-Global-Variables.md)** - Global variables available
 
-### 📁 Funções Individuais
+### 📁 Individual Functions
 
-Todas as funções estão documentadas individualmente na pasta [`Functions/`](Functions/README.md), organizadas por categoria:
+All functions are documented individually in the folder[`Functions/`](Functions/README.md), organized by category:
 
-- **🖱️ Input & Mouse** - Funções de entrada e mouse (8 funções)
-- **🎨 Rendering & Graphics** - Renderização e gráficos (13 funções)
-- **📝 Text & UI** - Texto e interface de usuário (6 funções)
-- **👤 Object Management** - Gerenciamento de objetos (2 funções)
-- **🎮 Bridge Functions** - Hooks e callbacks do sistema (3 funções)
+- **🖱️ Input & Mouse** - Input and mouse functions (8 functions)
+- **🎨 Rendering & Graphics** - Rendering and graphics (13 functions)
+- **📝 Text & UI** - Text and user interface (6 functions)
+- **👤 Object Management** - Object management (2 functions)
+- **🎮 Bridge Functions** - System hooks and callbacks (3 functions)
 
-## 📊 Estrutura da Documentação
+## 📊 Documentation Structure
 
-### Arquivos Principais
+### Main Files
 
-A documentação está organizada em 10 arquivos principais que cobrem os sistemas essenciais:
+Documentation is organized into 10 main files covering essential systems:
 
-- **01-10**: Documentação temática por sistema
-- **Functions/**: Documentação individual de cada função (32 funções)
-- **Api.md**: Documentação oficial completa da API
+- **01-10**: Thematic documentation per system
+- **Functions/**: Individual documentation for each function (32 functions)
+- **Api.md**: Complete official API documentation
 
-### Organização das Funções
+### Organization of Functions
 
-Todas as funções estão documentadas individualmente na pasta `Functions/` com:
+All functions are documented individually in the folder `Functions/` with:
 
-- Assinatura completa da função
-- Descrição detalhada de parâmetros
-- Valores de retorno
-- Exemplos práticos de uso
-- Notas importantes
-- Links para funções relacionadas
+- Full function subscription
+- Detailed description of parameters
+- Return values
+- Practical examples of use
+- Important notes
+- Links to related functions
 
-### Categorias Principais
+### Main Categories
 
-- **🖱️ Input & Mouse** (8) - Entrada, mouse e teclado
-- **🎨 Rendering & Graphics** (13) - Renderização e gráficos
-- **📝 Text & UI** (6) - Texto e interface
-- **👤 Object Management** (2) - Gerenciamento de objetos
+- **🖱️ Input & Mouse** (8) - Input, mouse and keyboard
+- **🎨 Rendering & Graphics** (13) - Rendering and graphics
+- **📝 Text & UI** (6) - Text and interface
+- **👤 Object Management** (2) - Object management
 - **🎮 Bridge Functions** (3) - Hooks e callbacks
 
-## 📖 Como Usar Esta Documentação
+## 📖 How to Use This Documentation
 
-### Para Iniciantes
+### For Beginners
 
-1. **Comece aqui**: Leia [01-Introducao.md](01-Introducao.md) para entender os princípios básicos
-2. **Entenda os objetos**: Consulte [04-Objetos-Game.md](04-Objetos-Game.md) para conhecer os objetos principais
-3. **Aprenda os hooks**: Veja [05-Bridge-Functions.md](05-Bridge-Functions.md) para entender o sistema de callbacks
+1. **Start here**: Read[01-Introduction.md](01-Introduction.md)to understand the basic principles
+2. **Understand objects**: Consult[04-Game-Objects.md](04-Game-Objects.md)to get to know the main objects
+3. **Learn the hooks**: See[05-Bridge-Functions.md](05-Bridge-Functions.md)to understand the callback system
 
-### Para Desenvolvimento
+### For Development
 
-1. **Funções específicas**: Use a [pasta Functions/](Functions/README.md) para documentação detalhada de cada função
-2. **Sistemas completos**: Consulte os arquivos numerados (01-10) para visão geral de cada sistema
-3. **Referência completa**: Use `Api.md` como referência técnica completa
+1. **Specific functions**: Use the[pasta Functions/](Functions/README.md)for detailed documentation of each function
+2. **Complete systems**: See the numbered files (01-10) for an overview of each system
+3. **Full reference**: Use `Api.md` as a complete technical reference
 
-### Navegação Rápida
+### Quick Navigation
 
-- **Por categoria**: Navegue pelas categorias no [índice de funções](Functions/README.md)
-- **Por nome**: Os arquivos são nomeados exatamente como as funções
-- **Por sistema**: Use os arquivos principais (01-10) para visão geral
+- **By category**: Browse the categories in[function index](Functions/README.md) - **By name**: Files are named exactly like the functions
+- **Per system**: Use main files (01-10) for overview
 
-## 🔗 Links Rápidos
+## 🔗 Quick Links
 
-- **[Todas as Funções](Functions/README.md)** - Índice completo de todas as funções
+- **[All Functions](Functions/README.md)** - Complete index of all functions
 - **[Bridge Functions](05-Bridge-Functions.md)** - Sistema de hooks e callbacks
-- **[Sistema de Renderização](06-Sistema-Renderizacao.md)** - Sistema completo de renderização
-- **[Sistema de UI](08-Sistema-UI.md)** - Interface de usuário e texto
-- **[Sistema de Pacotes](09-Sistema-Pacotes.md)** - Manipulação de pacotes
+- **[Rendering System](06-Rendering-System.md)** - Complete rendering system
+- **[UI System](08-UI-System.md)** - User interface and text
+- **[Packet System](09-Packet-System.md)** - Package handling
 
-## 📝 Notas Importantes
+## 📝 Important Notes
 
-- Todas as funções estão documentadas em português
-- Exemplos de código estão incluídos em cada função
-- A documentação segue o padrão Markdown para fácil leitura
-- Baseada em `Api.md` - Documentação oficial da API
+- All functions are documented in Portuguese
+- Code examples are included with each function
+- Documentation follows the Markdown standard for easy reading
+- Based on `Api.md`- Official API documentation
 
 ---
 
-**Fonte**: Documentação baseada em `Api.md` - Documentação oficial da API Lua do Game Client.
+**Source**: Documentation based on `Api.md`- Official documentation of the Game Client Lua API.
 

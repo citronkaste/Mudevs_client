@@ -1,83 +1,75 @@
 # RenderImage
 
-Versão simplificada de renderização de imagem.
+Simplified version of image rendering.
 
-## Assinatura
+## Signature
 
 ```lua
 RenderImage(id, x, y, w, h) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `id` (number): ID da textura
-- `x`, `y` (number): Posição na tela (pixels)
-- `w`, `h` (number): Largura e altura (pixels)
+- `id`(number): ID da textura
+- `x `, ` y`(number): Position on the screen (pixels)
+- `w `, ` h`(number): Width and height (pixels)
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Renderiza uma imagem 2D de forma simplificada, sem controle de UV. Use para renderização rápida quando não precisa de controle avançado.
+Renders a 2D image in a simplified way, without UV control. Use for fast rendering when you don't need advanced control.
 
-## Exemplos
+## Examples
 
-### Renderização Básica
+### Basic Rendering
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar imagem simples
+    --Render simple image
     RenderImage(textureId, 100, 100, 200, 200)
 end
-```
-
-### Botões de UI
-
-```lua
+```### UI Buttons```lua
 local buttonTextureId = 100
 
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar botão
+    --Render button
     RenderImage(buttonTextureId, 100, 100, 200, 50)
     
-    -- Renderizar texto sobre o botão
-    UIRenderText_RenderText(150, 115, "Botão", 100, 20, 1)
+    --Render text over button
+    UIRenderText_RenderText(150, 115, "Button", 100, 20, 1)
 end
-```
-
-### Múltiplas Imagens
-
-```lua
+```### Multiple Images```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar múltiplas imagens
+    --Render multiple images
     RenderImage(icon1, 10, 10, 32, 32)
     RenderImage(icon2, 50, 10, 32, 32)
     RenderImage(icon3, 90, 10, 32, 32)
 end
 ```
 
-## Diferença entre RenderImage e RenderBitmap
+## Difference between RenderImage and RenderBitmap
 
-- **RenderImage**: Simplificado, renderiza textura completa, sem controle de UV
-- **RenderBitmap**: Completo, permite controle de UV, escala e transparência
+- **RenderImage**: Simplified, renders full texture, without UV control
+- **RenderBitmap**: Complete, allows control of UV, scale and transparency
 
-**Quando usar:**
-- Use `RenderImage` para renderização simples e rápida
-- Use `RenderBitmap` quando precisar de controle de UV ou transparência
+**When to use:**
+- Use `RenderImage` for simple and fast rendering
+- Use `RenderBitmap` when you need UV or transparency control
 
-## Notas Importantes
+## Important Notes
 
-1. **Simples e rápido**: Versão simplificada para renderização rápida
-2. **Textura completa**: Sempre renderiza a textura completa
-3. **Sem UV**: Não permite controle de coordenadas UV
-4. **Performance**: Mais rápido que `RenderBitmap` para casos simples
+1. **Simple and fast**: Simplified version for fast rendering
+2. **Full Texture**: Always renders the full texture
+3. **No UV**: Does not allow UV coordinate control
+4. **Performance**: Faster than `RenderBitmap` for simple cases
 
-## Funções Relacionadas
+## Related Functions
 
-- [RenderBitmap](RenderBitmap.md) - Versão completa com controle de UV
-- [LoadBitmap](LoadBitmap.md) - Carrega textura
-- [BindTexture](BindTexture.md) - Vincula textura
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [RenderBitmap](RenderBitmap.md) - Full version with UV control
+- [LoadBitmap](LoadBitmap.md) - Load texture
+- [BindTexture](BindTexture.md) - Links texture
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

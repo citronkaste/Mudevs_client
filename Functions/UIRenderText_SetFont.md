@@ -1,63 +1,59 @@
 # UIRenderText_SetFont
 
-Define a fonte atual para renderização de texto.
+Sets the current font for text rendering.
 
-## Assinatura
+## Signature
 
 ```lua
 UIRenderText_SetFont(fontHandle) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `fontHandle` (number): Handle da fonte a ser usada
+- `fontHandle`(number): Source handle to be used
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Define a fonte que será usada para renderizar texto. Configure a fonte antes de chamar `UIRenderText_RenderText`.
+Sets the font that will be used to render text. Configure the source before calling `UIRenderText_RenderText`.
 
-## Exemplos
+## Examples
 
-### Definir Fonte
+### Set Font
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Definir fonte (exemplo: handle 0 = fonte padrão)
+    --Set font (example: handle 0 = default font)
     UIRenderText_SetFont(0)
     
-    -- Renderizar texto com a fonte definida
-    UIRenderText_RenderText(100, 100, "Texto com fonte padrão", 200, 20, 1)
+    --Render text with the defined font
+    UIRenderText_RenderText(100, 100, "Text with standard font", 200, 20, 1)
 end
-```
-
-### Múltiplas Fontes
-
-```lua
+```### Multiple Sources```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Texto com fonte padrão
+    --Text with standard font
     UIRenderText_SetFont(0)
-    UIRenderText_RenderText(100, 100, "Texto Normal", 200, 20, 1)
+    UIRenderText_RenderText(100, 100, "Normal Text", 200, 20, 1)
     
-    -- Texto com fonte diferente
+    --Text with different font
     UIRenderText_SetFont(1)
-    UIRenderText_RenderText(100, 130, "Texto Diferente", 200, 20, 1)
+    UIRenderText_RenderText(100, 130, "Different Text", 200, 20, 1)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Configure antes de renderizar**: Defina a fonte antes de chamar `UIRenderText_RenderText`
-2. **Handle da fonte**: O handle geralmente é obtido do sistema de fontes do jogo
-3. **Persistência**: A fonte definida será usada até que seja alterada
-4. **Fonte padrão**: Geralmente handle 0 é a fonte padrão
+1. **Set before rendering**: Set the font before calling `UIRenderText_RenderText`
+2. **Font Handle**: The handle is usually obtained from the game's font system
+3. **Persistence**: The defined font will be used until it is changed
+4. **Default font**: Generally handle 0 is the default font
 
-## Funções Relacionadas
+## Related Functions
 
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderiza texto
-- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Define cor do texto
-- [Sistema de UI](../08-Sistema-UI.md) - Documentação completa do sistema de UI
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renders text
+- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Set text color
+- [UI System](../08-UI-System.md) - Complete UI System documentation
 

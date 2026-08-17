@@ -1,103 +1,87 @@
 # IsMouseClicked
 
-Verifica se o botão esquerdo do mouse foi clicado no frame atual.
+Checks whether the left mouse button was clicked in the current frame.
 
-## Assinatura
+## Signature
 
 ```lua
 IsMouseClicked() -> bool
-```
+```## Parameters
 
-## Parâmetros
+None.
 
-Nenhum.
+## Return `bool `-` true ` if the left mouse button was clicked on the current frame,` false` otherwise.
 
-## Retorno
+## Features
 
-`bool` - `true` se o botão esquerdo do mouse foi clicado no frame atual, `false` caso contrário.
+- Return `true` just once per click
+- Useful for detecting unique (non-maintained) clicks
+- Must be called within `BridgeFunction_OnInterfaceRender` to function correctly
 
-## Características
+## Examples
 
-- Retorna `true` apenas uma vez por clique
-- Útil para detectar cliques únicos (não mantidos)
-- Deve ser chamado dentro de `BridgeFunction_OnInterfaceRender` para funcionar corretamente
-
-## Exemplos
-
-### Uso Básico
+### Basic Use
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if IsMouseClicked() then
-        -- Botão foi clicado neste frame
-        UIRenderText_RenderText(100, 100, "Mouse clicado!", 200, 20, 1)
+        --Button was clicked in this frame
+        UIRenderText_RenderText(100, 100, "Mouse clicked!", 200, 20, 1)
     end
 end
-```
-
-### Clique em Área Específica
-
-```lua
+```### Click on Specific Area```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar clique em botão (100, 100, 200x50)
+    --Check button click (100, 100, 200x50)
     if IsMouseClicked() and CheckMouseIn(100, 100, 200, 50) then
-        -- Botão foi clicado
-        UIRenderText_RenderText(100, 200, "Botão Clicado!", 200, 20, 1)
+        --Button was clicked
+        UIRenderText_RenderText(100, 200, "Button Clicked!", 200, 20, 1)
     end
 end
-```
-
-### Sistema de Botões
-
-```lua
+```### Button System```lua
 local buttons = {
-    {x = 100, y = 100, w = 200, h = 50, text = "Botão 1"},
-    {x = 100, y = 160, w = 200, h = 50, text = "Botão 2"}
+    {x = 100, y = 100, w = 200, h = 50, text = "Button 1"},
+    {x = 100, y = 160, w = 200, h = 50, text = "Button 2"}
 }
 
 function BridgeFunction_OnInterfaceRender()
     if IsMouseClicked() then
         for i, button in ipairs(buttons) do
             if CheckMouseIn(button.x, button.y, button.w, button.h) then
-                -- Botão clicado
-                print("Botão clicado: " .. button.text)
+                --Button clicked
+                print("Button clicked:" .. button.text)
             end
         end
     end
 end
-```
+```## Difference between IsMouseClicked and IsMouseHeld
 
-## Diferença entre IsMouseClicked e IsMouseHeld
+- **IsMouseClicked**: Returns `true` only once when the button is pressed
+- **IsMouseHeld**: Returns `true` continuously while the button is pressed
 
-- **IsMouseClicked**: Retorna `true` apenas uma vez quando o botão é pressionado
-- **IsMouseHeld**: Retorna `true` continuamente enquanto o botão está pressionado
-
-**Exemplo:**
+**Example:**
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if IsMouseClicked() then
-        -- Executa apenas uma vez por clique
-        print("Clique detectado")
+        --Executes only once per click
+        print("Click detected")
     end
     
     if IsMouseHeld() then
-        -- Executa continuamente enquanto pressionado
-        -- Útil para drag & drop, seleção contínua, etc.
+        --Runs continuously while pressed
+        --Useful for drag & drop, continuous selection, etc.
     end
 end
-```
+```## Important Notes
 
-## Notas Importantes
+1. **Call on OnInterfaceRender**: This function must be called within `BridgeFunction_OnInterfaceRender` to function correctly
+2. **Once per frame**: Returns `true` only once per click, even if called multiple times in the same frame
+3. **Combine with CheckMouseIn**: Use `CheckMouseIn` to check if the click was in a specific area
+4. **Performance**: The function is very fast, it can be called every frame without problems
 
-1. **Chamada no OnInterfaceRender**: Esta função deve ser chamada dentro de `BridgeFunction_OnInterfaceRender` para funcionar corretamente
-2. **Uma vez por frame**: Retorna `true` apenas uma vez por clique, mesmo se chamado múltiplas vezes no mesmo frame
-3. **Combine com CheckMouseIn**: Use `CheckMouseIn` para verificar se o clique foi em uma área específica
-4. **Performance**: A função é muito rápida, pode ser chamada a cada frame sem problemas
+## Related Functions
 
-## Funções Relacionadas
-
-- [IsMouseHeld](IsMouseHeld.md) - Verifica se botão está sendo mantido pressionado
-- [CheckMouseIn](CheckMouseIn.md) - Verifica se mouse está em área retangular
-- [MouseLButton](../10-Variaveis-Globais.md#mouselbutton) - Variável global do estado do botão esquerdo
-- [Sistema de Input](../07-Sistema-Input.md) - Documentação completa do sistema de input
+- [IsMouseHeld](IsMouseHeld.md) - Checks if the button is being held down
+- [CheckMouseIn](CheckMouseIn.md) - Checks if the mouse is in a rectangular area
+- [MouseLButton](../10-Global-Variables.md#mouselbutton) - Global left button state variable
+- [Input System](../07-Input-System.md) - Complete documentation of the input system
 

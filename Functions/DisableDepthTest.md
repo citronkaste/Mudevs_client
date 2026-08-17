@@ -1,71 +1,67 @@
 # DisableDepthTest
 
-Desabilita o teste de profundidade Z-buffer (desenha por cima de tudo).
+Disables the Z-buffer depth test (draws over everything).
 
-## Assinatura
+## Signature
 
 ```lua
 DisableDepthTest() -> void
 ```
 
-## Parâmetros
+## Parameters
 
-Nenhum.
+None.
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Desabilita o teste de profundidade, permitindo que elementos sejam renderizados por cima de tudo, independente da distância. Útil para UI que sempre deve aparecer na frente.
+Disables depth testing, allowing elements to be rendered on top of everything, regardless of distance. Useful for UI that should always appear at the front.
 
-## Exemplos
+## Examples
 
-### UI Sempre na Frente
+### Always-on UI
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Desabilitar depth test para UI
+    --Disable depth test for UI
     DisableDepthTest()
     
-    -- Renderizar UI (sempre na frente)
+    --Render UI (always in front)
     RenderImage(uiTexture, 100, 100, 200, 200)
     UIRenderText_RenderText(110, 110, "UI Text", 180, 20, 1)
     
-    -- Reabilitar depth test (se necessário)
-    -- EnableDepthTest() -- Se disponível
+    --Re-enable depth test (if necessary)
+    --EnableDepthTest() -- If available
 end
-```
-
-### Overlay de UI
-
-```lua
+```### Overlay the UI```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Desabilitar depth test
+    --Desabilitar depth test
     DisableDepthTest()
     
-    -- Renderizar overlay
+    --Render overlay
     EnableAlphaBlend()
     RenderBitmap(overlayTexture, 0, 0, 800, 600, 0, 0, 1, 1, false, false, 0.5)
     DisableAlphaBlend()
     
-    -- Renderizar elementos de UI
+    --Render UI elements
     UIRenderText_RenderText(10, 10, "Overlay UI", 200, 20, 1)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **UI sempre na frente**: Use para elementos de UI que sempre devem aparecer na frente
-2. **Performance**: Desabilitar depth test pode melhorar performance para elementos 2D
-3. **Use com cuidado**: Pode causar problemas se usado incorretamente com elementos 3D
-4. **Combine com UI**: Ideal para interfaces de usuário e overlays
+1. **UI always in front**: Use for UI elements that should always appear in front
+2. **Performance**: Disabling depth test can improve performance for 2D elements
+3. **Use with caution**: May cause problems if used incorrectly with 3D elements
+4. **Match with UI**: Ideal for user interfaces and overlays
 
-## Funções Relacionadas
+## Related Functions
 
-- [EnableDepthMask](EnableDepthMask.md) - Habilita escrita no Z-buffer
-- [DisableDepthMask](DisableDepthMask.md) - Desabilita escrita no Z-buffer
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [EnableDepthMask](EnableDepthMask.md) - Enables written non-Z-buffer
+- [DisableDepthMask](DisableDepthMask.md) - Disables writing to the Z-buffer
+- [RenderBitmap](RenderBitmap.md) - Renders image
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

@@ -1,207 +1,179 @@
 # BridgeFunction_OnInterfaceRender
 
-**CRÍTICO**: Chamado a cada frame do jogo para renderização da UI.
+**CRITICAL**: Called every frame of the game to render the UI.
 
-## Assinatura
-
-```lua
-function BridgeFunction_OnInterfaceRender()
-    -- Sua lógica de renderização aqui
-end
-```
-
-## Parâmetros
-
-Nenhum.
-
-## Retorno
-
-`nil` - Esta função não retorna valor.
-
-## Uso
-
-Ideal para:
-- Renderizar UI customizada
-- Desenhar texto e imagens
-- Processar input do usuário
-- Atualizar elementos visuais
-- Criar HUDs personalizados
-
-## Exemplos
-
-### Exemplo Básico
+## Signature
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar texto customizado
-    UIRenderText_SetTextColor(255, 255, 0, 255) -- Amarelo
-    UIRenderText_RenderText(100, 100, "Minha UI Customizada", 200, 20, 1)
+    --Your rendering logic here
 end
 ```
 
-### HUD de Informações do Jogador
+## Parameters
+
+None.
+
+## Return
+
+`nil`- This function does not return a value.
+
+## Usage
+
+Ideal for:
+- Render custom UI
+- Draw text and images
+- Process user input
+- Update visual elements
+- Create custom HUDs
+
+## Examples
+
+### Basic Example
 
 ```lua
+function BridgeFunction_OnInterfaceRender()
+    --Render custom text
+    UIRenderText_SetTextColor(255, 255, 0, 255) --Yellow
+    UIRenderText_RenderText(100, 100, "My Custom UI", 200, 20, 1)
+end
+```### Player Information HUD```lua
 function BridgeFunction_OnInterfaceRender()
     if Hero == nil then return end
     
-    -- Calcular percentuais
+    --Calculate percentages
     local hpPercent = (Hero.CurHP / Hero.MaxHP) * 100
     local mpPercent = (Hero.CurMP / Hero.MaxMP) * 100
     
-    -- Fundo semi-transparente
+    --Semi-transparent background
     UIRenderText_SetBgColor(0, 0, 0, 150)
     
-    -- Informações do jogador
+    --Player information
     UIRenderText_SetTextColor(255, 255, 255, 255)
     local playerInfo = string.format("%s (Level %d)", Hero.ID, Hero.Level)
     UIRenderText_RenderText(10, 10, playerInfo, 300, 20, 1)
     
-    -- Barra de HP
+    --HP bar
     UIRenderText_SetTextColor(255, 0, 0, 255)
     local hpText = string.format("HP: %.1f%%", hpPercent)
     UIRenderText_RenderText(10, 35, hpText, 300, 20, 1)
     
-    -- Barra de MP
+    --MP bar
     UIRenderText_SetTextColor(0, 100, 255, 255)
     local mpText = string.format("MP: %.1f%%", mpPercent)
     UIRenderText_RenderText(10, 60, mpText, 300, 20, 1)
 end
-```
-
-### Sistema de Input
-
-```lua
+```### Input System```lua
 local uiVisible = false
 
 function BridgeFunction_OnInterfaceRender()
-    -- Toggle UI com tecla M
-    if SEASON3B_IsPress(0x4D) then -- VK_M
+    --Toggle UI with M key
+    if SEASON3B_IsPress(0x4D) then --VK_M
         uiVisible = not uiVisible
     end
     
     if uiVisible then
-        -- Renderizar UI
-        UIRenderText_RenderText(10, 10, "UI Ativa", 100, 20, 1)
+        --Render UI
+        UIRenderText_RenderText(10, 10, "Active UI", 100, 20, 1)
     end
 end
-```
-
-### Sistema de Botões com Mouse
-
-```lua
+```### Mouse Button System```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar clique do mouse em área específica
+    --Check mouse click in specific area
     if IsMouseClicked() and CheckMouseIn(100, 100, 200, 50) then
-        -- Botão clicado
-        UIRenderText_RenderText(100, 200, "Botão Clicado!", 150, 20, 1)
+        --Button clicked
+        UIRenderText_RenderText(100, 200, "Button Clicked!", 150, 20, 1)
     end
     
-    -- Desenhar botão visual
+    --Draw visual button
     RenderImage(buttonTextureId, 100, 100, 200, 50)
 end
-```
-
-### Tooltip Seguindo Mouse
-
-```lua
+```### Tooltip Following Mouse```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Tooltip que segue o mouse
-    local tooltipText = "Informação do Tooltip"
+    --Tooltip that follows the mouse
+    local tooltipText = "Tooltip Information"
     
-    -- Posição do tooltip (ao lado do mouse)
+    --Tooltip position (next to the mouse)
     local tooltipX = MouseX + 15
     local tooltipY = MouseY + 15
     
-    -- Fundo do tooltip
+    --Tooltip background
     UIRenderText_SetBgColor(30, 30, 30, 200)
     UIRenderText_RenderText(tooltipX, tooltipY, "", 200, 50, 10)
     
-    -- Texto do tooltip
+    --Texto do tooltip
     UIRenderText_SetTextColor(255, 255, 255, 255)
     UIRenderText_RenderText(tooltipX + 5, tooltipY + 5, tooltipText, 190, 20, 11)
 end
 ```
 
-## Boas Práticas
+## Good Practices
 
-### 1. Validação de Objetos
+### 1. Object Validation
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if Hero == nil then return end
     
-    -- Usar Hero com segurança
+    --Use Hero safely
     local level = Hero.Level
 end
-```
-
-### 2. Otimização de Performance
-
-```lua
+```### 2. Performance Optimization```lua
 local lastUpdate = 0
-local updateInterval = 1000 -- 1 segundo
+local updateInterval = 1000 --1 second
 
 function BridgeFunction_OnInterfaceRender()
-    local currentTime = GetTickCount() -- Se disponível
+    local currentTime = GetTickCount() --If available
     
-    -- Atualizar apenas a cada segundo
+    --Update only every second
     if currentTime - lastUpdate > updateInterval then
         lastUpdate = currentTime
-        -- Lógica pesada aqui
+        --Heavy logic here
     end
     
-    -- Renderização leve a cada frame
+    --Lightweight rendering every frame
     UIRenderText_RenderText(10, 10, "UI", 100, 20, 1)
 end
-```
-
-### 3. Organização de Código
-
-```lua
--- Variáveis globais
+```### 3. Code Organization```lua
+--Global variables
 local uiVisible = true
 local buttonTextureId = 100
 
--- Função de renderização
+--Rendering function
 function BridgeFunction_OnInterfaceRender()
     if uiVisible then
         RenderImage(buttonTextureId, 100, 100, 200, 50)
     end
 end
-```
-
-### 4. Tratamento de Erros
-
-```lua
+```### 4. Error Handling```lua
 function BridgeFunction_OnInterfaceRender()
     local success, error = pcall(function()
-        -- Sua lógica aqui
+        --Your logic here
         if Hero then
-            -- Fazer algo
+            --Do something
         end
     end)
     
     if not success then
-        -- Log de erro (se disponível)
-        -- LogAdd(2, "Erro: " .. tostring(error))
+        --Error log (if available)
+        --LogAdd(2, "Error: " .. tostring(error))
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Performance**: Esta função é chamada a cada frame. Mantenha a lógica leve!
-2. **Renderização**: Configure estados de renderização antes de desenhar
-3. **Validação**: Sempre valide objetos antes de usar (Hero, GetCharacter, etc.)
-4. **Ordem**: A ordem de renderização importa (use o parâmetro `sort`)
-5. **Não bloqueie**: Evite operações que possam travar o frame
+1. **Performance**: This function is called every frame. Keep the logic light!
+2. **Rendering**: Configure rendering states before drawing
+3. **Validation**: Always validate objects before using (Hero, GetCharacter, etc.)
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.`sort`)
+5. **Do not block**: Avoid operations that could block the frame
 
-## Funções Relacionadas
+## Related Functions
 
-- [BridgeFunction_OnLoadInterface](BridgeFunction_OnLoadInterface.md) - Inicialização de recursos
-- [BridgeFunction_OnPacketRecv](BridgeFunction_OnPacketRecv.md) - Processamento de pacotes
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderização de texto
-- [RenderBitmap](RenderBitmap.md) - Renderização de imagens
-- [Bridge Functions](../05-Bridge-Functions.md) - Documentação completa dos hooks
+- [BridgeFunction_OnLoadInterface](BridgeFunction_OnLoadInterface.md) - Resource initialization
+- [BridgeFunction_OnPacketRecv](BridgeFunction_OnPacketRecv.md) - Package processing
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Text rendering
+- [RenderBitmap](RenderBitmap.md) - Image rendering
+- [Bridge Functions](../05-Bridge-Functions.md) - Complete documentation of hooks
 

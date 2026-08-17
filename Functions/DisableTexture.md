@@ -1,73 +1,69 @@
 # DisableTexture
 
-Desabilita texturização (permite desenhar cores sólidas).
+Disables texturing (allows you to draw solid colors).
 
-## Assinatura
+## Signature
 
 ```lua
 DisableTexture(disable) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `disable` (bool): `true` para desabilitar texturas, `false` para habilitar
+- `disable `(bool):` true `to disable textures,` false`to enable
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Desabilita a texturização, permitindo renderizar formas sólidas sem textura. Útil para desenhar formas geométricas simples, retângulos coloridos, etc.
+Disables texturing, allowing you to render solid shapes without texture. Useful for drawing simple geometric shapes, colorful rectangles, etc.
 
-## Exemplos
+## Examples
 
-### Desenhar Retângulo Sólido
+### Draw Solid Rectangle
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Desabilitar texturas
+    --Disable textures
     DisableTexture(true)
     
-    -- Configurar cor (usando RenderBitmap ou similar sem textura)
-    -- Renderizar retângulo sólido
-    -- (implementação específica pode variar)
+    --Configure color (using RenderBitmap or similar without texture)
+    --Render solid rectangle
+    --(specific implementation may vary)
     
-    -- Reabilitar texturas
+    --Re-enable textures
     DisableTexture(false)
 end
-```
-
-### Formas Geométricas
-
-```lua
+```### Geometric Shapes```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Desabilitar texturas para desenhar formas
+    --Disable textures for drawing shapes
     DisableTexture(true)
     
-    -- Desenhar formas sólidas
-    -- (implementação específica pode variar)
+    --Draw solid shapes
+    --(specific implementation may vary)
     
-    -- Reabilitar texturas
+    --Re-enable textures
     DisableTexture(false)
     
-    -- Renderizar elementos com textura normalmente
+    --Render textured elements normally
     RenderImage(textureId, 100, 100, 200, 200)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Cores sólidas**: Permite renderizar sem textura, apenas cores
-2. **Sempre reabilite**: Chame `DisableTexture(false)` após usar
-3. **Use para formas simples**: Ideal para retângulos, linhas e formas geométricas básicas
-4. **Performance**: Pode melhorar performance para elementos simples
+1. **Solid Colors**: Allows you to render without texture, just colors
+2. **Always rehabilitate**: Call `DisableTexture(false)` after using
+3. **Use for simple shapes**: Ideal for rectangles, lines and basic geometric shapes
+4. **Performance**: Can improve performance for simple elements
 
-## Funções Relacionadas
+## Related Functions
 
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem com textura
-- [RenderImage](RenderImage.md) - Renderiza imagem simplificada
-- [Color4f](Color4f.md) - Cria cor
-- [RGBA](RGBA.md) - Cria cor RGBA
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [RenderBitmap](RenderBitmap.md) - Renders image with texture
+- [RenderImage](RenderImage.md) - Renders simplified image
+- [Color4f](Color4f.md) - Creates color
+- [RGBA](RGBA.md) - Creates RGBA color
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

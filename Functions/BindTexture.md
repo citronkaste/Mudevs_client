@@ -1,54 +1,54 @@
 # BindTexture
 
-Vincula uma textura para renderização.
+Binds a texture for rendering.
 
-## Assinatura
+## Signature
 
 ```lua
 BindTexture(textureId) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `textureId` (number): ID da textura a ser vinculada
+- `textureId`(number): ID of the texture to be linked
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Vincula uma textura para renderização. Geralmente chamado automaticamente pelas funções de renderização, mas pode ser usado para trocar texturas manualmente.
+Binds a texture for rendering. Usually called automatically by rendering functions, but can be used to swap textures manually.
 
-## Exemplos
+## Examples
 
-### Vinculação Manual
+### Manual Linking
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Vincular textura manualmente
+    --Link texture manually
     BindTexture(textureId1)
     
-    -- Renderizar usando textura vinculada
+    --Render using linked texture
     RenderBitmap(textureId1, 100, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
     
-    -- Trocar textura
+    --Change texture
     BindTexture(textureId2)
     RenderBitmap(textureId2, 300, 100, 200, 200, 0, 0, 1, 1, false, false, 1.0)
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Vinculação**: Define qual textura será usada nas próximas renderizações
-2. **Automático**: Geralmente não é necessário chamar manualmente
-3. **Performance**: Pode ser útil para otimização em alguns casos
-4. **Use com cuidado**: Pode afetar renderizações subsequentes
+1. **Linking**: Defines which texture will be used in future renders
+2. **Automatic**: It is generally not necessary to call manually
+3. **Performance**: May be useful for optimization in some cases
+4. **Use with caution**: May affect subsequent renderings
 
-## Funções Relacionadas
+## Related Functions
 
-- [LoadBitmap](LoadBitmap.md) - Carrega textura
-- [RenderBitmap](RenderBitmap.md) - Renderiza imagem
-- [RenderImage](RenderImage.md) - Renderiza imagem simplificada
-- [Sistema de Renderização](../06-Sistema-Renderizacao.md) - Documentação completa do sistema de renderização
+- [LoadBitmap](LoadBitmap.md) - Load texture
+- [RenderBitmap](RenderBitmap.md) - Renders image
+- [RenderImage](RenderImage.md) - Renders simplified image
+- [Rendering System](../06-Rendering-System.md) - Complete rendering system documentation
 

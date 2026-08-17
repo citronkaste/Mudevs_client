@@ -1,83 +1,75 @@
 # UIRenderText_SetBgColor
 
-Define a cor de fundo do texto.
+Sets the background color of the text.
 
-## Assinatura
+## Signature
 
 ```lua
 UIRenderText_SetBgColor(r, g, b, a) -> void
 ```
 
-## Parâmetros
+## Parameters
 
-- `r`, `g`, `b`, `a` (number): Componentes de cor (0 - 255)
+- `r `, ` g `, ` b `, ` a`(number): Cor components (0 - 255)
 
-## Retorno
+## Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-## Uso
+## Usage
 
-Define a cor de fundo que será usada para renderizar texto. Cria um fundo colorido atrás do texto, útil para destacar informações importantes.
+Sets the background color that will be used to render text. Creates a colorful background behind text, useful for highlighting important information.
 
-## Exemplos
+## Examples
 
-### Fundo Básico
+### Basic Fund
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Fundo preto semi-transparente
+    --Semi-transparent black background
     UIRenderText_SetBgColor(0, 0, 0, 128)
     
-    -- Texto branco
+    --White text
     UIRenderText_SetTextColor(255, 255, 255, 255)
-    UIRenderText_RenderText(100, 100, "Texto com fundo", 200, 30, 1)
+    UIRenderText_RenderText(100, 100, "Text with background", 200, 30, 1)
 end
-```
-
-### Destaque de Informações
-
-```lua
+```### Information Highlight```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Fundo vermelho para alertas
+    --Red background for alerts
     UIRenderText_SetBgColor(255, 0, 0, 200)
     UIRenderText_SetTextColor(255, 255, 255, 255)
-    UIRenderText_RenderText(100, 100, "ALERTA!", 200, 30, 1)
+    UIRenderText_RenderText(100, 100, "ALERT!", 200, 30, 1)
     
-    -- Fundo verde para sucesso
+    --Green background for success
     UIRenderText_SetBgColor(0, 255, 0, 200)
-    UIRenderText_RenderText(100, 140, "Sucesso!", 200, 30, 1)
+    UIRenderText_RenderText(100, 140, "Success!", 200, 30, 1)
 end
-```
-
-### Tooltip com Fundo
-
-```lua
+```### Tooltip with Background```lua
 function BridgeFunction_OnInterfaceRender()
     if CheckMouseIn(100, 100, 50, 50) then
-        -- Fundo do tooltip
+        --Tooltip background
         UIRenderText_SetBgColor(30, 30, 30, 220)
         UIRenderText_RenderText(MouseX + 15, MouseY + 15, "", 200, 80, 10)
         
-        -- Texto do tooltip
+        --Texto do tooltip
         UIRenderText_SetTextColor(255, 255, 255, 255)
-        UIRenderText_RenderText(MouseX + 20, MouseY + 20, "Informação do Tooltip", 190, 20, 11)
-        UIRenderText_RenderText(MouseX + 20, MouseY + 45, "Mais informações aqui", 190, 20, 11)
+        UIRenderText_RenderText(MouseX + 20, MouseY + 20, "Tooltip Information", 190, 20, 11)
+        UIRenderText_RenderText(MouseX + 20, MouseY + 45, "More information here", 190, 20, 11)
     end
 end
 ```
 
-## Notas Importantes
+## Important Notes
 
-1. **Configure antes de renderizar**: Defina a cor de fundo antes de chamar `UIRenderText_RenderText`
-2. **Componentes 0-255**: Use valores de 0 a 255 para cada componente
-3. **Alpha**: O componente alpha controla transparência do fundo
-4. **Destaque**: Útil para destacar informações importantes
+1. **Set before rendering**: Set the background color before calling `UIRenderText_RenderText`
+2. **Components 0-255**: Use values ​​from 0 to 255 for each component
+3. **Alpha**: The alpha component controls background transparency
+4. **Highlight**: Useful for highlighting important information
 
-## Funções Relacionadas
+## Related Functions
 
-- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renderiza texto
-- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Define cor do texto
+- [UIRenderText_RenderText](UIRenderText_RenderText.md) - Renders text
+- [UIRenderText_SetTextColor](UIRenderText_SetTextColor.md) - Set text color
 - [RenderTipText](RenderTipText.md) - Renderiza tooltip
-- [Sistema de UI](../08-Sistema-UI.md) - Documentação completa do sistema de UI
+- [UI System](../08-UI-System.md) - Complete UI System documentation
 

@@ -1,211 +1,195 @@
 # Bridge Functions (Hooks)
 
-Este documento descreve as funções de callback (hooks) disponíveis na API Lua do Client.
+This document describes the callback functions (hooks) available in the Lua Client API.
 
-## Visão Geral
+## Overview
 
-As Bridge Functions são funções especiais que o cliente chama automaticamente em momentos específicos. Você deve implementar essas funções em seu script Lua para responder a esses eventos.
+Bridge Functions are special functions that the client automatically calls at specific times. You must implement these functions in your Lua script to respond to these events.
 
 ## BridgeFunction_OnLoadInterface
 
-Chamado quando a interface está sendo inicializada.
+Called when the interface is being initialized.
 
-### Assinatura
+### Signature
 
 ```lua
 function BridgeFunction_OnLoadInterface()
-    -- Sua lógica aqui
+    --Your logic here
 end
 ```
 
-### Parâmetros
+### Parameters
 
-Nenhum.
+None.
 
-### Retorno
+### Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-### Uso
+### Usage
 
-Ideal para:
-- Carregar texturas e recursos
-- Inicializar variáveis globais
-- Configurar estados iniciais
+Ideal for:
+- Load textures and resources
+- Initialize global variables
+- Configure initial states
 
-### Exemplo
+### Example
 
 ```lua
 local myTextureId = 100
 
 function BridgeFunction_OnLoadInterface()
-    -- Carregar textura customizada
+    --Load custom texture
     LoadBitmap("Interface\\CustomUI\\button.bmp", myTextureId, 0, 0, 0, 1)
 end
 ```
 
 ## BridgeFunction_OnInterfaceRender
 
-**CRÍTICO**: Chamado a cada frame do jogo para renderização da UI.
+**CRITICAL**: Called every frame of the game to render the UI.
 
-### Assinatura
+### Signature
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Sua lógica de renderização aqui
+    --Your rendering logic here
 end
 ```
 
-### Parâmetros
+### Parameters
 
-Nenhum.
+None.
 
-### Retorno
+### Return
 
-`nil` - Esta função não retorna valor.
+`nil`- This function does not return a value.
 
-### Uso
+### Usage
 
-Ideal para:
-- Renderizar UI customizada
-- Desenhar texto e imagens
-- Processar input do usuário
-- Atualizar elementos visuais
+Ideal for:
+- Render custom UI
+- Draw text and images
+- Process user input
+- Update visual elements
 
-### Exemplo Básico
+### Basic Example
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Renderizar texto customizado
-    UIRenderText_SetTextColor(255, 255, 0, 255) -- Amarelo
-    UIRenderText_RenderText(100, 100, "Minha UI Customizada", 200, 20, 1)
+    --Render custom text
+    UIRenderText_SetTextColor(255, 255, 0, 255) --Yellow
+    UIRenderText_RenderText(100, 100, "My Custom UI", 200, 20, 1)
 end
-```
-
-### Exemplo com Input
-
-```lua
+```### Example with Input```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar tecla M
-    if SEASON3B_IsPress(0x4D) then -- VK_M
-        -- Toggle UI
+    --Check M key
+    if SEASON3B_IsPress(0x4D) then --VK_M
+        --Toggle UI
         showUI = not showUI
     end
     
     if showUI then
-        -- Renderizar UI
-        UIRenderText_RenderText(10, 10, "UI Ativa", 100, 20, 1)
+        --Render UI
+        UIRenderText_RenderText(10, 10, "Active UI", 100, 20, 1)
     end
 end
-```
-
-### Exemplo com Mouse
-
-```lua
+```### Example with Mouse```lua
 function BridgeFunction_OnInterfaceRender()
-    -- Verificar clique do mouse em área específica
+    --Check mouse click in specific area
     if IsMouseClicked() and CheckMouseIn(100, 100, 200, 50) then
-        -- Botão clicado
-        UIRenderText_RenderText(100, 200, "Botão Clicado!", 150, 20, 1)
+        --Button clicked
+        UIRenderText_RenderText(100, 200, "Button Clicked!", 150, 20, 1)
     end
     
-    -- Desenhar botão visual
+    --Draw visual button
     RenderImage(buttonTextureId, 100, 100, 200, 50)
 end
-```
-
-### Exemplo com Hero
-
-```lua
+```### Example with Hero```lua
 function BridgeFunction_OnInterfaceRender()
     if Hero == nil then return end
     
-    -- Mostrar informações do jogador
+    --Show player information
     local hpPercent = (Hero.CurHP / Hero.MaxHP) * 100
     local text = string.format("HP: %.1f%% | Level: %d", hpPercent, Hero.Level)
     
-    UIRenderText_SetTextColor(0, 255, 0, 255) -- Verde
+    UIRenderText_SetTextColor(0, 255, 0, 255) --Verde
     UIRenderText_RenderText(10, 10, text, 300, 20, 1)
 end
 ```
 
-### Notas Importantes
+### Important Notes
 
-1. **Performance**: Esta função é chamada a cada frame. Mantenha a lógica leve!
-2. **Renderização**: Configure estados de renderização antes de desenhar
-3. **Validação**: Sempre valide objetos antes de usar (Hero, GetCharacter, etc.)
-4. **Ordem**: A ordem de renderização importa (use o parâmetro `sort`)
+1. **Performance**: This function is called every frame. Keep the logic light!
+2. **Rendering**: Configure rendering states before drawing
+3. **Validation**: Always validate objects before using (Hero, GetCharacter, etc.)
+Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.`sort`)
 
 ## BridgeFunction_OnPacketRecv
 
-Chamado quando um pacote específico é recebido do servidor.
+Called when a specific packet is received from the server.
 
-### Assinatura
+### Signature
 
 ```lua
 function BridgeFunction_OnPacketRecv(index, head, packet)
-    -- Sua lógica aqui
+    --Your logic here
 end
 ```
 
-### Parâmetros
+### Parameters
 
-- `index` (number): Índice do personagem relacionado
-- `head` (number): Cabeçalho do pacote (header)
-- `packet` (Packet): Objeto Packet com os dados
+- `index`(number): Related character index
+- `head`(number): Package header (header)
+- `packet`(Packet): Packet object with data
 
-### Retorno
+### Return
 
-`number` - Retorne `1` para consumir o pacote (bloquear processamento padrão) ou `0` para continuar processamento normal.
+`number `- Return` 1 `to consume the package (block standard processing) or` 0`to continue normal processing.
 
-### Uso
+### Usage
 
-Ideal para:
-- Processar pacotes customizados do servidor
-- Interceptar e modificar pacotes existentes
-- Implementar funcionalidades client-side baseadas em pacotes
+Ideal for:
+- Process custom server packages
+- Intercept and modify existing packages
+- Implement package-based client-side functionalities
 
-### Exemplo
+### Example
 
 ```lua
 function BridgeFunction_OnPacketRecv(index, head, packet)
-    -- Interceptar pacote customizado (header 0x1234)
+    --Intercept custom packet (header 0x1234)
     if head == 0x1234 then
         local subCode = packet:ReadByte()
         local message = packet:ReadString()
         
-        -- Processar mensagem customizada
+        --Process custom message
         if subCode == 0x01 then
-            -- Mostrar notificação
+            --Show notification
             UIRenderText_RenderText(100, 100, message, 300, 20, 1)
         end
         
-        -- Consumir pacote (bloquear processamento padrão)
+        --Consume package (block default processing)
         return 1
     end
     
-    -- Continuar processamento normal
+    --Continue normal processing
     return 0
 end
-```
-
-### Exemplo com Múltiplos Pacotes
-
-```lua
--- Constantes de headers
+```### Example with Multiple Packages```lua
+--Header constants
 local CUSTOM_HEADER_1 = 0x1234
 local CUSTOM_HEADER_2 = 0x5678
 
 function BridgeFunction_OnPacketRecv(index, head, packet)
     if head == CUSTOM_HEADER_1 then
-        -- Processar primeiro tipo de pacote
+        --Process first package type
         local data = packet:ReadDword()
-        -- Fazer algo com data
+        --Do something with date
         return 1
     elseif head == CUSTOM_HEADER_2 then
-        -- Processar segundo tipo de pacote
+        --Process second package type
         local text = packet:ReadString()
-        -- Fazer algo com text
+        --Do something with text
         return 1
     end
     
@@ -213,95 +197,83 @@ function BridgeFunction_OnPacketRecv(index, head, packet)
 end
 ```
 
-### Notas Importantes
+### Important Notes
 
-1. **Consumo**: Retornar `1` bloqueia o processamento padrão do pacote
-2. **Leitura**: Leia os dados na ordem correta (como foram escritos no servidor)
-3. **Validação**: Sempre valide o tamanho dos dados antes de ler
-4. **Performance**: Processe pacotes rapidamente para não travar o cliente
+1. **Consumption**: Return `1` blocks standard packet processing
+2. **Read**: Read the data in the correct order (as written on the server)
+3. **Validation**: Always validate data size before reading
+4. **Performance**: Process packages quickly to avoid customer lock-in
 
-## Boas Práticas
+## Good Practices
 
-### 1. Validação de Objetos
+### 1. Object Validation
 
 ```lua
 function BridgeFunction_OnInterfaceRender()
     if Hero == nil then return end
     
-    -- Usar Hero com segurança
+    --Use Hero safely
     local level = Hero.Level
 end
-```
-
-### 2. Tratamento de Erros
-
-```lua
+```### 2. Error Handling```lua
 function BridgeFunction_OnInterfaceRender()
     local success, error = pcall(function()
-        -- Sua lógica aqui
+        --Your logic here
         if Hero then
-            -- Fazer algo
+            --Do something
         end
     end)
     
     if not success then
-        -- Log de erro (se disponível)
-        -- LogAdd(2, "Erro: " .. tostring(error))
+        --Error log (if available)
+        --LogAdd(2, "Error: " .. tostring(error))
     end
 end
-```
-
-### 3. Otimização de Performance
-
-```lua
+```### 3. Performance Optimization```lua
 local lastUpdate = 0
-local updateInterval = 1000 -- 1 segundo
+local updateInterval = 1000 --1 second
 
 function BridgeFunction_OnInterfaceRender()
-    local currentTime = GetTickCount() -- Se disponível
+    local currentTime = GetTickCount() --If available
     
-    -- Atualizar apenas a cada segundo
+    --Update only every second
     if currentTime - lastUpdate > updateInterval then
         lastUpdate = currentTime
-        -- Lógica pesada aqui
+        --Heavy logic here
     end
     
-    -- Renderização leve a cada frame
+    --Lightweight rendering every frame
     UIRenderText_RenderText(10, 10, "UI", 100, 20, 1)
 end
-```
-
-### 4. Organização de Código
-
-```lua
--- Variáveis globais
+```### 4. Code Organization```lua
+--Global variables
 local uiVisible = true
 local buttonTextureId = 100
 
--- Função de inicialização
+--Startup function
 function BridgeFunction_OnLoadInterface()
     LoadBitmap("Interface\\button.bmp", buttonTextureId, 0, 0, 0, 1)
 end
 
--- Função de renderização
+--Rendering function
 function BridgeFunction_OnInterfaceRender()
     if uiVisible then
         RenderImage(buttonTextureId, 100, 100, 200, 50)
     end
 end
 
--- Função de processamento de pacotes
+--Packet processing function
 function BridgeFunction_OnPacketRecv(index, head, packet)
-    -- Processar pacotes
+    --Process packages
     return 0
 end
 ```
 
-## Funções Relacionadas
+## Related Functions
 
-- [OnLoadInterface](../Functions/BridgeFunction_OnLoadInterface.md) - Documentação detalhada
-- [OnInterfaceRender](../Functions/BridgeFunction_OnInterfaceRender.md) - Documentação detalhada
-- [OnPacketRecv](../Functions/BridgeFunction_OnPacketRecv.md) - Documentação detalhada
-- [Packet](04-Objetos-Game.md#packet) - Documentação do objeto Packet
-- [Sistema de Pacotes](09-Sistema-Pacotes.md) - Sistema completo de pacotes
+- [OnLoadInterface](../Functions/BridgeFunction_OnLoadInterface.md) - Detailed documentation
+- [OnInterfaceRender](../Functions/BridgeFunction_OnInterfaceRender.md) - Detailed documentation
+- [OnPacketRecv](../Functions/BridgeFunction_OnPacketRecv.md) - Detailed documentation
+- [Packet](04-Game-Objects.md#packet) - Packet object documentation
+- [Packet System](09-Packet-System.md) - Complete package system
 
